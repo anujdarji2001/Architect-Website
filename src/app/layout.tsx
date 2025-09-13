@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coming Soon",
+  title: "Architect Website - Coming Soon",
   description: "We’re working hard to launch our website. Stay tuned!",
 };
 
