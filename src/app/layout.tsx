@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Architect Website - Coming Soon",
+  title: "Mannmish Design Studio",
   description: "We’re working hard to launch our website. Stay tuned!",
+  icons: {
+    icon: "/logo.jpg",
+  },
 };
 
 export default function RootLayout({
