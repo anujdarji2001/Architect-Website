@@ -91,7 +91,7 @@ const ComingSoon = () => {
           <Image
             src="/logo.jpg"
             alt="Mannmish Design Studio Logo"
-            width={250}
+            width={200}
             height={100}
             className='rounded-2xl'
             priority
@@ -115,7 +115,7 @@ const ComingSoon = () => {
           </div>
           <h1 style={{
             fontFamily: 'Cormorant Garamond, serif',
-            fontSize: '4.2rem',
+            fontSize: '3.5rem',
             fontWeight: 300,
             margin: '0 0 10px',
             letterSpacing: '-0.02em',
@@ -127,7 +127,7 @@ const ComingSoon = () => {
         </div> 
         <div style={{ position: 'relative', zIndex: 10 , marginBottom: '10px'}}>
           <p style={{
-            fontSize: '1.3rem',
+            fontSize: '1.2rem',
             fontWeight: 300,
             lineHeight: '1.7',
             maxWidth: '700px',
@@ -179,14 +179,14 @@ const ComingSoon = () => {
             }}>Social Media</div>
             <h2 style={{
               fontFamily: 'Cormorant Garamond, serif',
-              fontSize: '2rem',
+              fontSize: '1.7rem',
               letterSpacing: '0.05em',
               fontWeight: 300,
               margin: 0,
               color: '#1A1A1A'
             }}>Get In Touch</h2>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', marginBottom: '30px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '30px' }}>
             <a href="https://www.instagram.com/mannmishdesignstudio" target="_blank" rel="noopener noreferrer" style={{
               transition: 'all 0.3s ease',
               color: '#1A1A1A',
