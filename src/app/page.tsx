@@ -4,37 +4,112 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { ArrowRight, Building, Home, Hammer } from 'lucide-react';
+import { ArrowRight, Building, Home, Hammer, Phone } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import testimonialsData from '../data/testimonials.json';
+import companyData from '../data/company.json';
+import projectsData from '../data/projects.json';
 
 export default function HomePage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoScrollInterval, setAutoScrollInterval] = useState<NodeJS.Timeout | null>(null);
+
+  // Get carousel projects from data
+  const carouselProjects = projectsData.projects.filter(project => 
+    projectsData.carouselProjects.includes(project.id)
+  );
+
+  const goToSlide = (slideIndex: number) => {
+    setCurrentSlide(slideIndex);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? carouselProjects.length - 1 : prev - 1));
+  };
+
+  const startAutoScroll = () => {
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+    }
+    const interval = setInterval(nextSlide, 4000);
+    setAutoScrollInterval(interval);
+  };
+
+  const stopAutoScroll = () => {
+    if (autoScrollInterval) {
+      clearInterval(autoScrollInterval);
+      setAutoScrollInterval(null);
+    }
+  };
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = document.getElementById('carousel-container');
+    if (container) {
+      container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+  }, [currentSlide]);
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
         
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
         
-        .fade-in {
-          animation: fadeIn 1s ease-out forwards;
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
         }
         
-        .fade-in-delay-1 { animation-delay: 0.5s; opacity: 0; }
-        .fade-in-delay-2 { animation-delay: 1s; opacity: 0; }
-        .fade-in-delay-3 { animation-delay: 1.5s; opacity: 0; }
+        @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes gridMove {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(80px, 80px); }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .fade-in {
+          animation: fadeIn 1.2s ease-out forwards;
+        }
+        
+        .fade-in-delay-1 { animation-delay: 0.3s; opacity: 0; }
+        .fade-in-delay-2 { animation-delay: 0.6s; opacity: 0; }
+        .fade-in-delay-3 { animation-delay: 0.9s; opacity: 0; }
       `}</style>
+
       
       <div className="min-h-screen bg-white">
         <Header />
         
         {/* Hero Section */}
-        <section className="relative pt-20 pb-16" style={{
+        <section className="relative pt-20 pb-16 overflow-hidden" style={{
           background: 'linear-gradient(135deg, #F7F5F3 0%, #F0EBE6 30%, #E8DDD6 70%, #DFD2C7 100%)',
           minHeight: '100vh',
         }}>
-          {/* Architectural blueprint grid */}
+          {/* Enhanced Architectural blueprint grid */}
           <div style={{
             position: 'absolute',
             top: 0,
@@ -42,98 +117,162 @@ export default function HomePage() {
             width: '100%',
             height: '100%',
             backgroundImage: `
-              linear-gradient(rgba(26, 26, 26, 0.03) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(26, 26, 26, 0.03) 1px, transparent 1px),
-              linear-gradient(rgba(26, 26, 26, 0.01) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(26, 26, 26, 0.01) 1px, transparent 1px)
+              linear-gradient(rgba(26, 26, 26, 0.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(26, 26, 26, 0.04) 1px, transparent 1px),
+              linear-gradient(rgba(26, 26, 26, 0.015) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(26, 26, 26, 0.015) 1px, transparent 1px)
             `,
             backgroundSize: '80px 80px, 80px 80px, 20px 20px, 20px 20px',
-            opacity: 0.8,
+            opacity: 0.9,
+            animation: 'gridMove 20s linear infinite',
           }} />
           
-          {/* Geometric elements */}
+          {/* Floating geometric elements */}
           <div style={{
             position: 'absolute',
-            top: '20%',
-            right: '5%',
-            width: '200px',
-            height: '200px',
-            border: '1px solid rgba(26, 26, 26, 0.08)',
+            top: '15%',
+            right: '8%',
+            width: '120px',
+            height: '120px',
+            border: '2px solid rgba(26, 26, 26, 0.1)',
             borderRadius: '50%',
-            opacity: 0.6,
+            opacity: 0.7,
+            animation: 'float 6s ease-in-out infinite',
           }} />
           <div style={{
             position: 'absolute',
-            top: '60%',
-            left: '8%',
-            width: '150px',
-            height: '150px',
-            border: '1px solid rgba(26, 26, 26, 0.06)',
-            transform: 'rotate(45deg)',
+            top: '25%',
+            right: '12%',
+            width: '60px',
+            height: '60px',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            borderRadius: '50%',
             opacity: 0.5,
+            animation: 'float 8s ease-in-out infinite reverse',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '65%',
+            left: '10%',
+            width: '100px',
+            height: '100px',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            transform: 'rotate(45deg)',
+            opacity: 0.6,
+            animation: 'rotate 15s linear infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '45%',
+            left: '5%',
+            width: '80px',
+            height: '80px',
+            border: '2px solid rgba(26, 26, 26, 0.06)',
+            transform: 'rotate(30deg)',
+            opacity: 0.4,
+            animation: 'rotate 12s linear infinite reverse',
+          }} />
+          
+          {/* Gradient overlay for depth */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.02) 0%, transparent 50%)',
+            pointerEvents: 'none',
           }} />
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center">
-              {/* Logo */}
-              <div className="fade-in mb-8">
-                <Image
-                  src="/logo.jpg"
-                  alt="Mannmish Design Studio Logo"
-                  width={200}
-                  height={100}
-                  className="mx-auto rounded-2xl"
-                  priority
-                  style={{
-                    filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.08))',
-                  }}
-                />
+              {/* Enhanced Logo */}
+              <div className="fade-in mb-12">
+                <div className="relative inline-block">
+                  <div style={{
+                    position: 'absolute',
+                    inset: '-20px',
+                    background: 'linear-gradient(45deg, rgba(26,26,26,0.05), rgba(26,26,26,0.1))',
+                    borderRadius: '50%',
+                    animation: 'pulse 3s ease-in-out infinite',
+                  }} />
+                  <Image
+                    src="/logo.jpg"
+                    alt="Mannmish Design Studio Logo"
+                    width={220}
+                    height={110}
+                    className="mx-auto rounded-2xl relative z-10"
+                    priority
+                    style={{
+                      filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.12))',
+                      transition: 'transform 0.3s ease',
+                    }}
+                  />
+                </div>
               </div>
               
-              <div className="fade-in fade-in-delay-1 mb-6">
-                <p style={{
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '0.9rem',
-                  fontWeight: 300,
-                  letterSpacing: '0.3em',
-                  textTransform: 'uppercase',
-                  color: '#666666',
-                }}>
-                  Architecture • Interior • Construction
-                </p>
+              {/* Enhanced Tagline */}
+              <div className="fade-in fade-in-delay-1 mb-8">
+                <div className="inline-flex items-center space-x-4 px-6 py-3 bg-white/60 backdrop-blur-sm rounded-full border border-white/20">
+                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+                  <p style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.95rem',
+                    fontWeight: 400,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: '#666666',
+                  }}>
+                    Architecture • Interior • Construction
+                  </p>
+                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+                </div>
               </div>
               
-              <h1 className="fade-in fade-in-delay-1" style={{
+              {/* Enhanced Main Title */}
+              <h1 className="fade-in fade-in-delay-1 mb-8" style={{
                 fontFamily: 'Cormorant Garamond, serif',
                 fontSize: 'clamp(3rem, 5vw, 4.5rem)',
                 fontWeight: 300,
                 letterSpacing: '-0.02em',
-                lineHeight: '1.1',
+                lineHeight: '1.05',
                 color: '#1A1A1A',
-                marginBottom: '1.5rem'
+                textShadow: '0 2px 4px rgba(0,0,0,0.05)',
               }}>
                 Mannmish Design Studio
               </h1>
               
-              <p className="fade-in fade-in-delay-2 max-w-3xl mx-auto mb-12" style={{
-                fontSize: '1.3rem',
+              {/* Enhanced Description */}
+              <p className="fade-in fade-in-delay-2 max-w-4xl mx-auto mb-16" style={{
+                fontSize: '1.4rem',
                 fontWeight: 300,
-                lineHeight: '1.7',
+                lineHeight: '1.8',
                 color: '#4A4A4A',
-                fontFamily: 'Crimson Text, serif',
-                fontStyle: 'italic'
+                fontFamily: 'Cormorant Garamond, serif',
+                fontStyle: 'italic',
+                textShadow: '0 1px 2px rgba(0,0,0,0.03)',
               }}>
                 Where vision meets craftsmanship. We create spaces that tell stories,
                 blending contemporary design with timeless elegance.
               </p>
               
-              <div className="fade-in fade-in-delay-3">
+              {/* Enhanced CTA Buttons */}
+              <div className="fade-in fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-6">
                 <Link
                   href="/projects"
-                  className="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium"
+                  className="group inline-flex items-center px-10 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 font-medium text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 >
                   View Our Work
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center px-10 py-4 bg-white/80 backdrop-blur-sm text-gray-900 rounded-full hover:bg-white transition-all duration-300 font-medium text-lg border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                >
+                  Start Your Project
+                  <Phone className="ml-3 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                 </Link>
               </div>
             </div>
@@ -141,9 +280,9 @@ export default function HomePage() {
         </section>
 
 
-        {/* Project Carousel */}
+        {/* Image Carousel */}
         <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 style={{
                 fontFamily: 'Cormorant Garamond, serif',
@@ -152,70 +291,85 @@ export default function HomePage() {
                 color: '#1A1A1A',
                 marginBottom: '1rem'
               }}>
-                Featured Projects
+                Our Work Gallery
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                Discover some of our recent work that showcases our design philosophy and expertise.
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                A visual journey through our design philosophy and creative excellence.
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Link href="/projects/1" className="group cursor-pointer">
-                <div className="relative h-64 overflow-hidden rounded-2xl mb-4">
-                  <Image
-                    src="/logo.jpg"
-                    alt="Modern Villa Design"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                      Completed 2024
-                    </span>
-                  </div>
+            <div className="relative w-full">
+              <div className="overflow-hidden rounded-2xl">
+                <div className="flex transition-transform duration-500 ease-in-out" id="carousel-container">
+                  {carouselProjects.map((project, index) => (
+                    <div key={project.id} className="w-full flex-shrink-0">
+                      <div className="relative h-[60vh] lg:h-[70vh] xl:h-[80vh]">
+                        <Image
+                          src={project.carouselImage}
+                          alt={project.carouselTitle}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                        <div className="absolute bottom-6 left-6 text-white">
+                          <h3 className="text-2xl font-semibold mb-2">{project.carouselTitle}</h3>
+                          <p className="text-white/90">{project.carouselSubtitle}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Modern Villa Design</h3>
-                <p className="text-gray-600 text-sm">Contemporary architecture with seamless indoor-outdoor living</p>
-              </Link>
+              </div>
               
-              <Link href="/projects/2" className="group cursor-pointer">
-                <div className="relative h-64 overflow-hidden rounded-2xl mb-4">
-                  <Image
-                    src="/logo.jpg"
-                    alt="Corporate Office Complex"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                      In Progress
-                    </span>
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Corporate Office Complex</h3>
-                <p className="text-gray-600 text-sm">Sustainable design for modern workplace productivity</p>
-              </Link>
+              {/* Navigation Buttons */}
+              <button
+                onClick={() => {
+                  stopAutoScroll();
+                  prevSlide();
+                  setTimeout(startAutoScroll, 1000);
+                }}
+                onMouseEnter={stopAutoScroll}
+                onMouseLeave={startAutoScroll}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full p-3 hover:bg-white transition-colors duration-200 shadow-lg"
+              >
+                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
               
-              <Link href="/projects/3" className="group cursor-pointer">
-                <div className="relative h-64 overflow-hidden rounded-2xl mb-4">
-                  <Image
-                    src="/logo.jpg"
-                    alt="Luxury Apartment Interior"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+              <button
+                onClick={() => {
+                  stopAutoScroll();
+                  nextSlide();
+                  setTimeout(startAutoScroll, 1000);
+                }}
+                onMouseEnter={stopAutoScroll}
+                onMouseLeave={startAutoScroll}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full p-3 hover:bg-white transition-colors duration-200 shadow-lg"
+              >
+                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+              
+              {/* Dots Indicator */}
+              <div className="flex justify-center mt-6 space-x-2">
+                {carouselProjects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      stopAutoScroll();
+                      goToSlide(index);
+                      setTimeout(startAutoScroll, 1000);
+                    }}
+                    className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                      currentSlide === index 
+                        ? 'bg-gray-900' 
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                      Completed 2023
-                    </span>
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Luxury Apartment Interior</h3>
-                <p className="text-gray-600 text-sm">Elegant interior design with premium materials</p>
-              </Link>
+                ))}
+              </div>
             </div>
             
             <div className="text-center mt-12">
@@ -245,7 +399,7 @@ export default function HomePage() {
               }}>
                 Our Expertise
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Three core areas where we excel, combining technical expertise with creative vision.
               </p>
             </div>
@@ -276,7 +430,7 @@ export default function HomePage() {
                 }}>
                   Architecture
                 </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   We create innovative architectural solutions that balance functionality with aesthetic excellence. 
                   Our designs are not just buildings, but spaces that inspire and enhance the human experience.
                 </p>
@@ -316,7 +470,7 @@ export default function HomePage() {
                 }}>
                   Interior Design
                 </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   We transform interior spaces into beautiful, functional environments that reflect your 
                   personality and enhance your lifestyle. Every detail is carefully considered and curated.
                 </p>
@@ -378,7 +532,7 @@ export default function HomePage() {
                 }}>
                   Construction
                 </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   Our construction management ensures precision delivery from concept to completion. 
                   We maintain the highest quality standards while keeping projects on time and within budget.
                 </p>
@@ -418,68 +572,32 @@ export default function HomePage() {
               }}>
                 What Our Clients Say
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Don't just take our word for it. Here's what our clients have to say about working with us.
               </p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-8 rounded-2xl">
-                <div className="mb-6">
-                  <div className="flex text-yellow-400 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    ))}
+              {testimonialsData.testimonials.slice(0, 3).map((testimonial) => (
+                <div key={testimonial.id} className="bg-gray-50 p-8 rounded-2xl">
+                  <div className="mb-6">
+                    <div className="flex text-yellow-400 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-gray-600 italic mb-4">
+                      "{testimonial.testimonial}"
+                    </p>
                   </div>
-                  <p className="text-gray-600 italic mb-4">
-                    "Mannmish Design Studio transformed our home beyond our expectations. Their attention to detail and creative solutions made our dream home a reality."
-                  </p>
-                </div>
-                <div className="border-t border-gray-200 pt-4">
-                  <h4 className="font-semibold text-gray-900">Rajesh & Priya Shah</h4>
-                  <p className="text-sm text-gray-600">Residential Project, Ahmedabad</p>
-                </div>
-              </div>
-              
-              <div className="bg-gray-50 p-8 rounded-2xl">
-                <div className="mb-6">
-                  <div className="flex text-yellow-400 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    ))}
+                  <div className="border-t border-gray-200 pt-4">
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.projectType} Project, {testimonial.location}</p>
                   </div>
-                  <p className="text-gray-600 italic mb-4">
-                    "Professional, punctual, and incredibly talented. They delivered our office renovation on time and within budget. Highly recommended!"
-                  </p>
                 </div>
-                <div className="border-t border-gray-200 pt-4">
-                  <h4 className="font-semibold text-gray-900">Amit Patel</h4>
-                  <p className="text-sm text-gray-600">Commercial Project, Vadodara</p>
-                </div>
-              </div>
-              
-              <div className="bg-gray-50 p-8 rounded-2xl">
-                <div className="mb-6">
-                  <div className="flex text-yellow-400 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-gray-600 italic mb-4">
-                    "From concept to completion, the team was exceptional. Their innovative design approach and quality construction exceeded all our expectations."
-                  </p>
-                </div>
-                <div className="border-t border-gray-200 pt-4">
-                  <h4 className="font-semibold text-gray-900">Dr. Neha Gupta</h4>
-                  <p className="text-sm text-gray-600">Villa Project, Gandhinagar</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -500,7 +618,7 @@ export default function HomePage() {
                 }}>
                   Meet Our Team
                 </h2>
-                <p className="text-gray-600 text-lg mb-8">
+                <p className="text-gray-600 text-lg mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   Our design studio combines the technical expertise of civil engineering 
                   with the creative vision of architectural planning and interior design.
                 </p>
@@ -516,13 +634,11 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
                   <h3 className="font-semibold text-gray-900 mb-2">Manank Patel</h3>
-                  <p className="text-sm text-gray-600 mb-2 uppercase tracking-wide">B.E. Civil</p>
-                  <p className="text-gray-700 text-sm">+91 9662002521</p>
+                  <p className="text-sm text-gray-600 uppercase tracking-wide">B.E. Civil</p>
                 </div>
                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
                   <h3 className="font-semibold text-gray-900 mb-2">Michelle Chokshi</h3>
-                  <p className="text-sm text-gray-600 mb-2 uppercase tracking-wide">B.Arch (COA), M.Plan (ITPI)</p>
-                  <p className="text-gray-700 text-sm">+91 9662002521</p>
+                  <p className="text-sm text-gray-600 uppercase tracking-wide">B.Arch (COA), M.Plan (ITPI)</p>
                 </div>
               </div>
             </div>

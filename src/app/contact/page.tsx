@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import companyData from '../../data/company.json';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ export default function ContactPage() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -23,22 +26,42 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          });
+        }, 5000);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -94,7 +117,7 @@ export default function ContactPage() {
               Get In Touch
             </h1>
             
-            <p className="fade-in fade-in-delay-1 max-w-3xl mx-auto text-lg text-gray-600">
+            <p className="fade-in fade-in-delay-1 max-w-3xl mx-auto text-lg text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
               Ready to bring your vision to life? We'd love to hear about your project 
               and discuss how we can help create something extraordinary together.
             </p>
@@ -126,9 +149,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Visit Our Studio</h3>
                       <div className="text-gray-600 space-y-1">
-                        <p>804, Colonnade 2, Near One World Capital</p>
-                        <p>B/h. Rajpath Club, Vikramnagar, Bodakdev</p>
-                        <p>Ahmedabad - 380054, Gujarat</p>
+                        <p>{companyData.company.location.address}</p>
+                        <p>{companyData.company.location.area}</p>
+                        <p>{companyData.company.location.city} - {companyData.company.location.pincode}, {companyData.company.location.state}</p>
                       </div>
                     </div>
                   </div>
@@ -141,7 +164,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
                       <div className="text-gray-600 space-y-1">
-                        <p><strong>Contact:</strong> +91 9662002521</p>
+                        <p><strong>Contact:</strong> {companyData.company.contact.phone}</p>
                       </div>
                     </div>
                   </div>
@@ -154,10 +177,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h3>
                       <a 
-                        href="mailto:mannmishdesignstudio@gmail.com"
+                        href={`mailto:${companyData.company.contact.email}`}
                         className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
                       >
-                        mannmishdesignstudio@gmail.com
+                        {companyData.company.contact.email}
                       </a>
                     </div>
                   </div>
@@ -170,9 +193,9 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
                       <div className="text-gray-600 space-y-1">
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                        <p>Saturday: 10:00 AM - 4:00 PM</p>
-                        <p>Sunday: By Appointment</p>
+                        <p>Monday - Friday: {companyData.company.businessHours.weekdays}</p>
+                        <p>Saturday: {companyData.company.businessHours.saturday}</p>
+                        <p>Sunday: {companyData.company.businessHours.sunday}</p>
                       </div>
                     </div>
                   </div>
@@ -196,10 +219,24 @@ export default function ContactPage() {
                     <div className="text-center py-8">
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                       <h4 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h4>
-                      <p className="text-gray-600">Thank you for reaching out. We'll get back to you soon.</p>
+                      <p className="text-gray-600">Thank you for reaching out. We've sent you a confirmation email and will get back to you within 24 hours.</p>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                          <div className="flex">
+                            <div className="flex-shrink-0">
+                              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <div className="ml-3">
+                              <p className="text-sm text-red-800">{error}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -212,7 +249,7 @@ export default function ContactPage() {
                             value={formData.name}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500"
                             placeholder="Your full name"
                           />
                         </div>
@@ -227,7 +264,7 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500"
                             placeholder="your.email@example.com"
                           />
                         </div>
@@ -244,7 +281,7 @@ export default function ContactPage() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500"
                             placeholder="+91 98765 43210"
                           />
                         </div>
@@ -258,7 +295,7 @@ export default function ContactPage() {
                             value={formData.subject}
                             onChange={handleInputChange}
                             required
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500"
                           >
                             <option value="">Select a subject</option>
                             <option value="residential">Residential Project</option>
@@ -281,17 +318,30 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           required
                           rows={6}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500"
                           placeholder="Tell us about your project, requirements, timeline, and any specific questions you have..."
                         />
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium flex items-center justify-center"
+                        disabled={isLoading}
+                        className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200 font-medium flex items-center justify-center"
                       >
-                        Send Message
-                        <Send className="ml-2 h-5 w-5" />
+                        {isLoading ? (
+                          <>
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message
+                            <Send className="ml-2 h-5 w-5" />
+                          </>
+                        )}
                       </button>
                     </form>
                   )}
@@ -316,7 +366,7 @@ export default function ContactPage() {
               }}>
                 Find Us
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Visit our studio in the heart of Ahmedabad. We're conveniently located 
                 near major landmarks and easily accessible by public transport.
               </p>
@@ -325,14 +375,14 @@ export default function ContactPage() {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-96 w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.123456789!2d72.56789012345678!3d23.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDA3JzI0LjQiTiA3MsKwMzQnMDQuNCIx!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.769322916302!2d72.5006522760154!3d23.03224051596592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9bca35f508ab%3A0xe7538a44f1998b53!2sColonade%202!5e0!3m2!1sen!2sin!4v1757835555263!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Mannmish Design Studio Location"
+                  title="Mannmish Design Studio Location - Colonade 2"
                 />
               </div>
               <div className="p-6 bg-white">
@@ -340,13 +390,13 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">Mannmish Design Studio</h3>
                     <p className="text-gray-600 text-sm">
-                      804, Colonnade 2, Near One World Capital<br />
-                      B/h. Rajpath Club, Vikramnagar, Bodakdev<br />
-                      Ahmedabad - 380054, Gujarat
+                      {companyData.company.location.address}<br />
+                      {companyData.company.location.area}<br />
+                      {companyData.company.location.city} - {companyData.company.location.pincode}, {companyData.company.location.state}
                     </p>
                   </div>
                   <a
-                    href="https://maps.google.com/?q=23.12345678901234,72.56789012345678"
+                    href="https://maps.google.com/?q=23.03224051596592,72.5006522760154"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium"

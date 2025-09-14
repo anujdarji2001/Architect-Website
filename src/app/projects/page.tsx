@@ -6,97 +6,14 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { ArrowRight, Building, Home, Hammer, Calendar, MapPin, Users, ExternalLink, Phone } from 'lucide-react';
+import projectsData from '../../data/projects.json';
+import companyData from '../../data/company.json';
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const categories = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'residential', name: 'Residential' },
-    { id: 'commercial', name: 'Commercial' },
-    { id: 'interior', name: 'Interior Design' },
-  ];
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Modern Villa Design',
-      category: 'residential',
-      type: 'Architecture & Interior',
-      location: 'Ahmedabad, Gujarat',
-      year: '2024',
-      area: '4500 sq ft',
-      description: 'A contemporary villa featuring clean lines, large glass facades, and seamless indoor-outdoor living spaces.',
-      image: '/logo.jpg', // Replace with actual project images
-      features: ['Modern Architecture', 'Landscape Design', 'Interior Design', 'Smart Home Features'],
-      status: 'Completed'
-    },
-    {
-      id: 2,
-      title: 'Corporate Office Complex',
-      category: 'commercial',
-      type: 'Architecture',
-      location: 'Gandhinagar, Gujarat',
-      year: '2024',
-      area: '12000 sq ft',
-      description: 'A state-of-the-art office complex designed for productivity and employee well-being with sustainable features.',
-      image: '/logo.jpg',
-      features: ['Sustainable Design', 'Open Office Layout', 'Green Building', 'Parking Solutions'],
-      status: 'In Progress'
-    },
-    {
-      id: 3,
-      title: 'Luxury Apartment Interior',
-      category: 'interior',
-      type: 'Interior Design',
-      location: 'Vadodara, Gujarat',
-      year: '2023',
-      area: '2800 sq ft',
-      description: 'Elegant interior design for a luxury apartment featuring premium materials and custom furniture.',
-      image: '/logo.jpg',
-      features: ['Custom Furniture', 'Premium Materials', 'Lighting Design', 'Space Optimization'],
-      status: 'Completed'
-    },
-    {
-      id: 4,
-      title: 'Heritage Restaurant Renovation',
-      category: 'commercial',
-      type: 'Architecture & Interior',
-      location: 'Surat, Gujarat',
-      year: '2023',
-      area: '3500 sq ft',
-      description: 'Restoration and modern adaptation of a heritage building into a contemporary restaurant space.',
-      image: '/logo.jpg',
-      features: ['Heritage Restoration', 'Modern Amenities', 'Kitchen Design', 'Dining Experience'],
-      status: 'Completed'
-    },
-    {
-      id: 5,
-      title: 'Family Home Extension',
-      category: 'residential',
-      type: 'Architecture',
-      location: 'Rajkot, Gujarat',
-      year: '2023',
-      area: '1800 sq ft',
-      description: 'Seamless extension to an existing family home, creating additional living space and modern amenities.',
-      image: '/logo.jpg',
-      features: ['Seamless Integration', 'Additional Living Space', 'Modern Amenities', 'Cost-Effective Design'],
-      status: 'Completed'
-    },
-    {
-      id: 6,
-      title: 'Boutique Hotel Interior',
-      category: 'interior',
-      type: 'Interior Design',
-      location: 'Udaipur, Rajasthan',
-      year: '2024',
-      area: '8000 sq ft',
-      description: 'Luxurious interior design for a boutique hotel featuring unique themes and premium hospitality spaces.',
-      image: '/logo.jpg',
-      features: ['Luxury Design', 'Unique Themes', 'Hospitality Focus', 'Guest Experience'],
-      status: 'In Progress'
-    }
-  ];
+  const categories = projectsData.categories;
+  const projects = projectsData.projects;
 
   const filteredProjects = selectedCategory === 'all' 
     ? projects 
@@ -155,7 +72,7 @@ export default function ProjectsPage() {
               Our Projects
             </h1>
             
-            <p className="fade-in fade-in-delay-1 max-w-3xl mx-auto text-lg text-gray-600">
+            <p className="fade-in fade-in-delay-1 max-w-3xl mx-auto text-lg text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
               Explore our portfolio of architectural and interior design projects. 
               Each project tells a unique story of innovation, functionality, and aesthetic excellence.
             </p>
@@ -281,26 +198,26 @@ export default function ProjectsPage() {
               }}>
                 Our Impact
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Numbers that reflect our commitment to excellence and client satisfaction.
               </p>
             </div>
 
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">50+</div>
+                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
                 <div className="text-gray-600">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">100%</div>
+                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.clientSatisfaction}%</div>
                 <div className="text-gray-600">Client Satisfaction</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">5+</div>
+                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.yearsExperience}+</div>
                 <div className="text-gray-600">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">15+</div>
+                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.citiesServed}+</div>
                 <div className="text-gray-600">Cities Served</div>
               </div>
             </div>

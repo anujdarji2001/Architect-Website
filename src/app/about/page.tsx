@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { Users, Award, MapPin, Calendar } from 'lucide-react';
+import teamData from '../../data/team.json';
+import companyData from '../../data/company.json';
 
 export default function AboutPage() {
   return (
@@ -73,7 +75,7 @@ export default function AboutPage() {
               About Mannmish Design Studio
             </h1>
             
-            <p className="fade-in fade-in-delay-2 max-w-3xl mx-auto text-lg text-gray-600">
+            <p className="fade-in fade-in-delay-2 max-w-3xl mx-auto text-lg text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
               Founded with a passion for creating exceptional spaces, we bring together 
               technical expertise and creative vision to transform architectural dreams into reality.
             </p>
@@ -94,7 +96,7 @@ export default function AboutPage() {
                 }}>
                   Our Story
                 </h2>
-                <div className="space-y-6 text-gray-600 leading-relaxed">
+                <div className="space-y-6 text-gray-600 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   <p>
                     Mannmish Design Studio was born from a shared vision of creating spaces 
                     that not only serve their functional purpose but also inspire and elevate 
@@ -122,29 +124,29 @@ export default function AboutPage() {
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <Calendar className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">2020</div>
+                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.founded}</div>
                       <div className="text-sm text-gray-600">Founded</div>
                     </div>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <Users className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">50+</div>
+                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
                       <div className="text-sm text-gray-600">Projects Completed</div>
                     </div>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <Award className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">100%</div>
+                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.stats.clientSatisfaction}%</div>
                       <div className="text-sm text-gray-600">Client Satisfaction</div>
                     </div>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <MapPin className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">Gujarat</div>
-                      <div className="text-sm text-gray-600">Based in Ahmedabad</div>
+                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.location.state}</div>
+                      <div className="text-sm text-gray-600">Based in {companyData.company.location.city}</div>
                     </div>
                   </div>
                 </div>
@@ -168,57 +170,29 @@ export default function AboutPage() {
               }}>
                 Meet Our Team
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Our collaborative approach combines diverse expertise to deliver 
                 comprehensive design and construction solutions.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-              {/* Manank Patel */}
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg text-center">
-                <div className="mb-6">
-                  <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-gray-500" />
+              {teamData.team.map((member) => (
+                <div key={member.id} className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg text-center">
+                  <div className="mb-6">
+                    <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <Users className="h-10 w-10 text-gray-500" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">{member.name}</h3>
+                    <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">{member.qualifications}</p>
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">Manank Patel</h3>
-                  <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">B.E. Civil Engineering</p>
-                </div>
-                <div className="text-left space-y-4">
-                  <p className="text-gray-600">
-                    With a strong foundation in civil engineering, Manank brings technical precision 
-                    and structural expertise to every project. His engineering background ensures 
-                    that all designs are not only aesthetically pleasing but also structurally sound 
-                    and compliant with safety standards.
-                  </p>
-                  <div className="pt-4 border-t border-gray-200">
-                    <p className="font-medium text-gray-900">Contact</p>
-                    <p className="text-gray-600">+91 9662002521</p>
+                  <div className="text-left space-y-4">
+                    <p className="text-gray-600">
+                      {member.description}
+                    </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Michelle Chokshi */}
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg text-center">
-                <div className="mb-6">
-                  <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-gray-500" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">Michelle Chokshi</h3>
-                  <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">B.Arch (COA), M.Plan (ITPI)</p>
-                </div>
-                <div className="text-left space-y-4">
-                  <p className="text-gray-600">
-                    Michelle combines her architectural design expertise with master planning knowledge 
-                    to create holistic design solutions. Her qualifications from the Council of Architecture 
-                    and Institute of Town Planners ensure comprehensive spatial planning and design excellence.
-                  </p>
-                  <div className="pt-4 border-t border-gray-200">
-                    <p className="font-medium text-gray-900">Contact</p>
-                    <p className="text-gray-600">+91 9662002521</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -236,7 +210,7 @@ export default function AboutPage() {
               }}>
                 Our Design Philosophy
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 We believe in creating spaces that are both functional and beautiful, 
                 sustainable and innovative, timeless yet contemporary.
               </p>

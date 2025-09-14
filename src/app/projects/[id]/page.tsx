@@ -262,7 +262,7 @@ Key features include:
                   {project.title}
                 </h1>
                 
-                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                <p className="text-gray-600 text-lg mb-8 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {project.description}
                 </p>
                 
@@ -324,7 +324,7 @@ Key features include:
                   Project Overview
                 </h2>
                 
-                <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed">
+                <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   <p className="mb-6">
                     {project.longDescription}
                   </p>

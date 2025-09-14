@@ -18,7 +18,7 @@ export default function Footer() {
                 height={20}
                 className="rounded"
               />
-              <h3 className="text-xl font-semibold">Mannmish Design Studio</h3>
+              <h3 className="text-xl font-semibold text-white">Mannmish Design Studio</h3>
             </div>
             <p className="text-gray-300 text-sm mb-6 leading-relaxed">
               Where vision meets craftsmanship. We create spaces that tell stories,
@@ -135,18 +135,10 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="text-center">
             <p className="text-gray-400 text-sm">
               © 2025 Mannmish Design Studio. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm">
-              <a href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Privacy Policy
-              </a>
-              <a href="/terms" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Terms of Service
-              </a>
-            </div>
           </div>
         </div>
       </div>
