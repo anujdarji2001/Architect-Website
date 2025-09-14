@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Mannmish Design Studio",
-  description: "We’re working hard to launch our website. Stay tuned!",
+  description: "Where vision meets craftsmanship",
   icons: {
     icon: "/logo.jpg",
   },
