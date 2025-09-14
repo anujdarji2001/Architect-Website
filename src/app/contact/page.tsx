@@ -57,7 +57,7 @@ export default function ContactPage() {
         const errorData = await response.json();
         setError(errorData.error || 'Failed to send message. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setError('Network error. Please check your connection and try again.');
     } finally {
       setIsLoading(false);
@@ -109,7 +109,7 @@ export default function ContactPage() {
             </h1>
             
             <p className="fade-in fade-in-delay-1 page-subtitle">
-              Ready to bring your vision to life? We'd love to hear about your project 
+              Ready to bring your vision to life? We&apos;d love to hear about your project 
               and discuss how we can help create something extraordinary together.
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="fade-in">
                 <h2 className="typography-h2 mb-8">
-                  Let's Connect
+                  Let&apos;s Connect
                 </h2>
                 
                 <div className="space-y-8">
@@ -198,7 +198,7 @@ export default function ContactPage() {
                     <div className="text-center py-8">
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                       <h4 className="typography-h4 text-gray-900 mb-2">Message Sent!</h4>
-                      <p className="typography-body">Thank you for reaching out. We've sent you a confirmation email and will get back to you within 24 hours.</p>
+                      <p className="typography-body">Thank you for reaching out. We&apos;ve sent you a confirmation email and will get back to you within 24 hours.</p>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -340,7 +340,7 @@ export default function ContactPage() {
                 Find Us
               </h2>
               <p className="typography-body-large max-w-2xl mx-auto">
-                Visit our studio in the heart of Ahmedabad. We're conveniently located 
+                Visit our studio in the heart of Ahmedabad. We&apos;re conveniently located 
                 near major landmarks and easily accessible by public transport.
               </p>
             </div>

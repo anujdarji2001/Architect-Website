@@ -94,7 +94,7 @@ export default function ProjectImages({ images, projectTitle, showHeroImage = fa
                 <div className="relative h-[80vh] w-full">
                   <Image
                     src={item.original}
-                    alt={item.originalAlt}
+                    alt={item.originalAlt || `${projectTitle} - Image`}
                     fill
                     className="object-contain"
                   />
@@ -103,8 +103,8 @@ export default function ProjectImages({ images, projectTitle, showHeroImage = fa
               renderThumbInner={(item) => (
                 <div className="relative w-full h-20 rounded-lg overflow-hidden">
                   <Image
-                    src={item.thumbnail}
-                    alt={item.thumbnailAlt}
+                    src={item.thumbnail || item.original}
+                    alt={item.thumbnailAlt || `${projectTitle} - Thumbnail`}
                     fill
                     className="object-cover"
                   />

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { ArrowRight, Building, Home, Hammer, Calendar, MapPin, Users, ExternalLink, Phone } from 'lucide-react';
+import { Calendar, MapPin, ExternalLink, Building } from 'lucide-react';
 import projectsData from '../../data/projects.json';
 import companyData from '../../data/company.json';
 
@@ -95,7 +95,7 @@ export default function ProjectsPage() {
         <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.map((project) => (
                 <div key={project.id} className="fade-in bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-64 overflow-hidden">
                     <Image

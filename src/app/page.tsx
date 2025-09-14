@@ -5,9 +5,8 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowRight, Building, Home, Hammer, Phone } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import testimonialsData from '../data/testimonials.json';
-import companyData from '../data/company.json';
 import projectsData from '../data/projects.json';
 
 export default function HomePage() {
@@ -23,21 +22,21 @@ export default function HomePage() {
     setCurrentSlide(slideIndex);
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
-  };
+  }, [carouselProjects.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev === 0 ? carouselProjects.length - 1 : prev - 1));
-  };
+  }, [carouselProjects.length]);
 
-  const startAutoScroll = () => {
+  const startAutoScroll = useCallback(() => {
     if (autoScrollInterval) {
       clearInterval(autoScrollInterval);
     }
     const interval = setInterval(nextSlide, 4000);
     setAutoScrollInterval(interval);
-  };
+  }, [autoScrollInterval, nextSlide]);
 
   const stopAutoScroll = () => {
     if (autoScrollInterval) {
@@ -53,7 +52,7 @@ export default function HomePage() {
         clearInterval(autoScrollInterval);
       }
     };
-  }, []);
+  }, [autoScrollInterval, startAutoScroll]);
 
   useEffect(() => {
     const container = document.getElementById('carousel-container');
@@ -260,7 +259,7 @@ export default function HomePage() {
             <div className="relative w-full">
               <div className="overflow-hidden rounded-2xl">
                 <div className="flex transition-transform duration-500 ease-in-out" id="carousel-container">
-                  {carouselProjects.map((project, index) => (
+                  {carouselProjects.map((project) => (
                     <div key={project.id} className="w-full flex-shrink-0">
                       <div className="relative h-[60vh] lg:h-[70vh] xl:h-[80vh]">
                         <Image
@@ -502,7 +501,7 @@ export default function HomePage() {
                 What Our Clients Say
               </h2>
               <p className="typography-body-large max-w-2xl mx-auto">
-                Don't just take our word for it. Here's what our clients have to say about working with us.
+                Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with us.
               </p>
             </div>
             
@@ -518,7 +517,7 @@ export default function HomePage() {
                       ))}
                     </div>
                     <p className="typography-body italic mb-4">
-                      "{testimonial.testimonial}"
+                      &ldquo;{testimonial.testimonial}&rdquo;
                     </p>
                   </div>
                   <div className="border-t border-gray-200 pt-4">

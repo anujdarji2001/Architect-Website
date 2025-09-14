@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
@@ -184,7 +183,7 @@ Key features include:
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <h1 className="typography-h2 mb-4">Project Not Found</h1>
-            <p className="typography-body mb-8">The project you're looking for doesn't exist.</p>
+            <p className="typography-body mb-8">The project you&apos;re looking for doesn&apos;t exist.</p>
             <Link
               href="/projects"
               className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 typography-button"
@@ -348,7 +347,7 @@ Key features include:
                   <div className="bg-gray-900 text-white p-6 rounded-lg">
                     <h4 className="typography-h5 mb-4">Interested in Similar Work?</h4>
                     <p className="typography-body-small mb-4" style={{ color: '#d1d5db' }}>
-                      Let's discuss your project requirements and create something extraordinary together.
+                      Let&apos;s discuss your project requirements and create something extraordinary together.
                     </p>
                     <Link
                       href="/contact"
