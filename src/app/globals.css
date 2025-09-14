@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "react-image-gallery/styles/css/image-gallery.css";
 
 :root {
   --background: #ffffff;
@@ -23,4 +24,44 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom styles for react-image-gallery */
+.image-gallery {
+  background: transparent;
+}
+
+.image-gallery-slide {
+  background: transparent;
+}
+
+.image-gallery-thumbnails {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 0;
+}
+
+.image-gallery-thumbnail {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-gallery-thumbnail.active {
+  border-color: #fff;
+}
+
+.image-gallery-icon {
+  color: #fff;
+}
+
+.image-gallery-left-nav,
+.image-gallery-right-nav {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.image-gallery-left-nav:hover,
+.image-gallery-right-nav:hover {
+  background: rgba(0, 0, 0, 0.7);
 }

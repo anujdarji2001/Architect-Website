@@ -30,7 +30,7 @@ export default function HomePage() {
         <Header />
         
         {/* Hero Section */}
-        <section className="relative pt-16" style={{
+        <section className="relative pt-20 pb-16" style={{
           background: 'linear-gradient(135deg, #F7F5F3 0%, #F0EBE6 30%, #E8DDD6 70%, #DFD2C7 100%)',
           minHeight: '100vh',
         }}>
@@ -73,7 +73,7 @@ export default function HomePage() {
             opacity: 0.5,
           }} />
           
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center">
               {/* Logo */}
               <div className="fade-in mb-8">
@@ -129,7 +129,7 @@ export default function HomePage() {
               
               <div className="fade-in fade-in-delay-3">
                 <Link
-                  href="/portfolio"
+                  href="/projects"
                   className="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium"
                 >
                   View Our Work
@@ -140,8 +140,100 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Services Overview */}
+
+        {/* Project Carousel */}
         <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '2.5rem',
+                fontWeight: 300,
+                color: '#1A1A1A',
+                marginBottom: '1rem'
+              }}>
+                Featured Projects
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Discover some of our recent work that showcases our design philosophy and expertise.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Link href="/projects/1" className="group cursor-pointer">
+                <div className="relative h-64 overflow-hidden rounded-2xl mb-4">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Modern Villa Design"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                      Completed 2024
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Modern Villa Design</h3>
+                <p className="text-gray-600 text-sm">Contemporary architecture with seamless indoor-outdoor living</p>
+              </Link>
+              
+              <Link href="/projects/2" className="group cursor-pointer">
+                <div className="relative h-64 overflow-hidden rounded-2xl mb-4">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Corporate Office Complex"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                      In Progress
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Corporate Office Complex</h3>
+                <p className="text-gray-600 text-sm">Sustainable design for modern workplace productivity</p>
+              </Link>
+              
+              <Link href="/projects/3" className="group cursor-pointer">
+                <div className="relative h-64 overflow-hidden rounded-2xl mb-4">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Luxury Apartment Interior"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                      Completed 2023
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Luxury Apartment Interior</h3>
+                <p className="text-gray-600 text-sm">Elegant interior design with premium materials</p>
+              </Link>
+            </div>
+            
+            <div className="text-center mt-12">
+              <Link
+                href="/projects"
+                className="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 font-medium"
+              >
+                View All Projects
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Expertise - Three Sections */}
+        <section className="py-20" style={{
+          background: 'linear-gradient(135deg, #F7F5F3 0%, #F0EBE6 30%, #E8DDD6 70%, #DFD2C7 100%)',
+        }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 style={{
@@ -154,58 +246,239 @@ export default function HomePage() {
                 Our Expertise
               </h2>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                From architectural design to interior styling and construction management,
-                we bring comprehensive expertise to every project.
+                Three core areas where we excel, combining technical expertise with creative vision.
+              </p>
+            </div>
+            
+            {/* Architecture Section */}
+            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 lg:mb-20">
+              <div className="order-2 md:order-1">
+                <div className="relative h-96 rounded-2xl overflow-hidden">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Architecture Services"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </div>
+              <div className="order-1 md:order-2">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/60 backdrop-blur-sm rounded-full mb-6">
+                  <Building className="h-8 w-8 text-gray-700" />
+                </div>
+                <h3 style={{
+                  fontFamily: 'Cormorant Garamond, serif',
+                  fontSize: '2.5rem',
+                  fontWeight: 300,
+                  color: '#1A1A1A',
+                  marginBottom: '1.5rem'
+                }}>
+                  Architecture
+                </h3>
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  We create innovative architectural solutions that balance functionality with aesthetic excellence. 
+                  Our designs are not just buildings, but spaces that inspire and enhance the human experience.
+                </p>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Residential & Commercial Design
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Sustainable & Green Building
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Structural Engineering Integration
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Project Management & Supervision
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Interior Design Section */}
+            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 lg:mb-20">
+              <div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/60 backdrop-blur-sm rounded-full mb-6">
+                  <Home className="h-8 w-8 text-gray-700" />
+                </div>
+                <h3 style={{
+                  fontFamily: 'Cormorant Garamond, serif',
+                  fontSize: '2.5rem',
+                  fontWeight: 300,
+                  color: '#1A1A1A',
+                  marginBottom: '1.5rem'
+                }}>
+                  Interior Design
+                </h3>
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  We transform interior spaces into beautiful, functional environments that reflect your 
+                  personality and enhance your lifestyle. Every detail is carefully considered and curated.
+                </p>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Space Planning & Layout Design
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Material Selection & Sourcing
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Custom Furniture Design
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Lighting & Color Schemes
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <div className="relative h-96 rounded-2xl overflow-hidden">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Interior Design Services"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </div>
+            </div>
+
+            {/* Construction Section */}
+            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="order-2 md:order-1">
+                <div className="relative h-96 rounded-2xl overflow-hidden">
+                  <Image
+                    src="/logo.jpg"
+                    alt="Construction Services"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </div>
+              <div className="order-1 md:order-2">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/60 backdrop-blur-sm rounded-full mb-6">
+                  <Hammer className="h-8 w-8 text-gray-700" />
+                </div>
+                <h3 style={{
+                  fontFamily: 'Cormorant Garamond, serif',
+                  fontSize: '2.5rem',
+                  fontWeight: 300,
+                  color: '#1A1A1A',
+                  marginBottom: '1.5rem'
+                }}>
+                  Construction
+                </h3>
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  Our construction management ensures precision delivery from concept to completion. 
+                  We maintain the highest quality standards while keeping projects on time and within budget.
+                </p>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Project Planning & Scheduling
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Quality Control & Supervision
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Vendor Management & Coordination
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
+                    Cost Management & Budget Control
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 style={{
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '2.5rem',
+                fontWeight: 300,
+                color: '#1A1A1A',
+                marginBottom: '1rem'
+              }}>
+                What Our Clients Say
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Don't just take our word for it. Here's what our clients have to say about working with us.
               </p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-8 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-200 rounded-full mb-6">
-                  <Building className="h-8 w-8 text-gray-700" />
+              <div className="bg-gray-50 p-8 rounded-2xl">
+                <div className="mb-6">
+                  <div className="flex text-yellow-400 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 italic mb-4">
+                    "Mannmish Design Studio transformed our home beyond our expectations. Their attention to detail and creative solutions made our dream home a reality."
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Architecture</h3>
-                <p className="text-gray-600">
-                  Innovative architectural solutions that balance functionality with aesthetic excellence.
-                </p>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center mt-4 text-gray-900 hover:text-gray-700"
-                >
-                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="font-semibold text-gray-900">Rajesh & Priya Shah</h4>
+                  <p className="text-sm text-gray-600">Residential Project, Ahmedabad</p>
+                </div>
               </div>
               
-              <div className="text-center p-8 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-200 rounded-full mb-6">
-                  <Home className="h-8 w-8 text-gray-700" />
+              <div className="bg-gray-50 p-8 rounded-2xl">
+                <div className="mb-6">
+                  <div className="flex text-yellow-400 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 italic mb-4">
+                    "Professional, punctual, and incredibly talented. They delivered our office renovation on time and within budget. Highly recommended!"
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Interior Design</h3>
-                <p className="text-gray-600">
-                  Curated interior spaces that reflect your personality and enhance your lifestyle.
-                </p>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center mt-4 text-gray-900 hover:text-gray-700"
-                >
-                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="font-semibold text-gray-900">Amit Patel</h4>
+                  <p className="text-sm text-gray-600">Commercial Project, Vadodara</p>
+                </div>
               </div>
               
-              <div className="text-center p-8 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-200 rounded-full mb-6">
-                  <Hammer className="h-8 w-8 text-gray-700" />
+              <div className="bg-gray-50 p-8 rounded-2xl">
+                <div className="mb-6">
+                  <div className="flex text-yellow-400 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 italic mb-4">
+                    "From concept to completion, the team was exceptional. Their innovative design approach and quality construction exceeded all our expectations."
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Construction</h3>
-                <p className="text-gray-600">
-                  Precision construction management ensuring quality delivery from concept to completion.
-                </p>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center mt-4 text-gray-900 hover:text-gray-700"
-                >
-                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="font-semibold text-gray-900">Dr. Neha Gupta</h4>
+                  <p className="text-sm text-gray-600">Villa Project, Gandhinagar</p>
+                </div>
               </div>
             </div>
           </div>
@@ -244,12 +517,12 @@ export default function HomePage() {
                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
                   <h3 className="font-semibold text-gray-900 mb-2">Manank Patel</h3>
                   <p className="text-sm text-gray-600 mb-2 uppercase tracking-wide">B.E. Civil</p>
-                  <p className="text-gray-700 text-sm">+91 99048 25197</p>
+                  <p className="text-gray-700 text-sm">+91 9662002521</p>
                 </div>
                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
                   <h3 className="font-semibold text-gray-900 mb-2">Michelle Chokshi</h3>
                   <p className="text-sm text-gray-600 mb-2 uppercase tracking-wide">B.Arch (COA), M.Plan (ITPI)</p>
-                  <p className="text-gray-700 text-sm">+91 97245 74042</p>
+                  <p className="text-gray-700 text-sm">+91 9662002521</p>
                 </div>
               </div>
             </div>
@@ -257,7 +530,7 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gray-900 text-white">
+        <section className="py-20 bg-gray-900 text-white mb-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 style={{
               fontFamily: 'Cormorant Garamond, serif',

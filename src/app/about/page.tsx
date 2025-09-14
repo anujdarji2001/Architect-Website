@@ -193,7 +193,7 @@ export default function AboutPage() {
                   </p>
                   <div className="pt-4 border-t border-gray-200">
                     <p className="font-medium text-gray-900">Contact</p>
-                    <p className="text-gray-600">+91 99048 25197</p>
+                    <p className="text-gray-600">+91 9662002521</p>
                   </div>
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function AboutPage() {
                   </p>
                   <div className="pt-4 border-t border-gray-200">
                     <p className="font-medium text-gray-900">Contact</p>
-                    <p className="text-gray-600">+91 97245 74042</p>
+                    <p className="text-gray-600">+91 9662002521</p>
                   </div>
                 </div>
               </div>
@@ -310,18 +310,12 @@ export default function AboutPage() {
               
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <p className="text-gray-600 mb-4">Ready to discuss your project?</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex justify-center">
                   <a 
-                    href="tel:+919904825197"
+                    href="tel:+919662002521"
                     className="px-6 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200"
                   >
-                    Call Manank
-                  </a>
-                  <a 
-                    href="tel:+919724574042"
-                    className="px-6 py-2 border border-gray-900 text-gray-900 rounded-md hover:bg-gray-900 hover:text-white transition-colors duration-200"
-                  >
-                    Call Michelle
+                    Call Us
                   </a>
                 </div>
               </div>
