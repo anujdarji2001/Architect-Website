@@ -183,11 +183,11 @@ Key features include:
         <Header />
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-            <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
+            <h1 className="typography-h2 mb-4">Project Not Found</h1>
+            <p className="typography-body mb-8">The project you're looking for doesn't exist.</p>
             <Link
               href="/projects"
-              className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200"
+              className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 typography-button"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Projects
@@ -202,8 +202,6 @@ Key features include:
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -251,18 +249,11 @@ Key features include:
                   </span>
                 </div>
                 
-                <h1 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-                  fontWeight: 300,
-                  letterSpacing: '-0.02em',
-                  color: '#1A1A1A',
-                  marginBottom: '1.5rem'
-                }}>
+                <h1 className="typography-h1 mb-6">
                   {project.title}
                 </h1>
                 
-                <p className="text-gray-600 text-lg mb-8 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <p className="typography-body-large mb-8">
                   {project.description}
                 </p>
                 
@@ -270,29 +261,29 @@ Key features include:
                   <div className="flex items-center space-x-3">
                     <Calendar className="h-5 w-5 text-gray-400" />
                     <div>
-                      <div className="text-sm text-gray-500">Year</div>
-                      <div className="font-medium text-gray-900">{project.year}</div>
+                      <div className="typography-body-small text-gray-500">Year</div>
+                      <div className="typography-body font-medium text-gray-900">{project.year}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <MapPin className="h-5 w-5 text-gray-400" />
                     <div>
-                      <div className="text-sm text-gray-500">Location</div>
-                      <div className="font-medium text-gray-900">{project.location}</div>
+                      <div className="typography-body-small text-gray-500">Location</div>
+                      <div className="typography-body font-medium text-gray-900">{project.location}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Building className="h-5 w-5 text-gray-400" />
                     <div>
-                      <div className="text-sm text-gray-500">Area</div>
-                      <div className="font-medium text-gray-900">{project.area}</div>
+                      <div className="typography-body-small text-gray-500">Area</div>
+                      <div className="typography-body font-medium text-gray-900">{project.area}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Users className="h-5 w-5 text-gray-400" />
                     <div>
-                      <div className="text-sm text-gray-500">Team</div>
-                      <div className="font-medium text-gray-900">{project.team.length} Members</div>
+                      <div className="typography-body-small text-gray-500">Team</div>
+                      <div className="typography-body font-medium text-gray-900">{project.team.length} Members</div>
                     </div>
                   </div>
                 </div>
@@ -314,30 +305,17 @@ Key features include:
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-3 gap-12">
               <div className="lg:col-span-2">
-                <h2 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '2rem'
-                }}>
+                <h2 className="typography-h2 mb-8">
                   Project Overview
                 </h2>
                 
-                <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <div className="typography-body mb-8">
                   <p className="mb-6">
                     {project.longDescription}
                   </p>
                 </div>
                 
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '1.8rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '1.5rem',
-                  marginTop: '3rem'
-                }}>
+                <h3 className="typography-h3 mb-6 mt-12">
                   Key Features
                 </h3>
                 
@@ -345,7 +323,7 @@ Key features include:
                   {project.features.map((feature, index) => (
                     <div key={index} className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="typography-body">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -353,34 +331,28 @@ Key features include:
               
               <div className="lg:col-span-1">
                 <div className="sticky top-8">
-                  <h3 style={{
-                    fontFamily: 'Cormorant Garamond, serif',
-                    fontSize: '1.8rem',
-                    fontWeight: 300,
-                    color: '#1A1A1A',
-                    marginBottom: '1.5rem'
-                  }}>
+                  <h3 className="typography-h3 mb-6">
                     Project Team
                   </h3>
                   
                   <div className="space-y-4 mb-8">
                     {project.team.map((member, index) => (
                       <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-gray-900 mb-1">{member.name}</h4>
-                        <p className="text-sm text-gray-600 mb-1">{member.role}</p>
-                        <p className="text-xs text-gray-500">{member.qualification}</p>
+                        <h4 className="typography-h5 mb-1">{member.name}</h4>
+                        <p className="typography-body-small mb-1">{member.role}</p>
+                        <p className="typography-caption">{member.qualification}</p>
                       </div>
                     ))}
                   </div>
                   
                   <div className="bg-gray-900 text-white p-6 rounded-lg">
-                    <h4 className="font-semibold mb-4">Interested in Similar Work?</h4>
-                    <p className="text-gray-300 text-sm mb-4">
+                    <h4 className="typography-h5 mb-4">Interested in Similar Work?</h4>
+                    <p className="typography-body-small mb-4" style={{ color: '#d1d5db' }}>
                       Let's discuss your project requirements and create something extraordinary together.
                     </p>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center w-full justify-center px-4 py-2 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-200 font-medium"
+                      className="inline-flex items-center w-full justify-center px-4 py-2 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-200 typography-button"
                     >
                       Get In Touch
                       <ExternalLink className="ml-2 h-4 w-4" />
@@ -398,16 +370,10 @@ Key features include:
         }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Project Gallery
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="typography-body-large">
                 Click on any image to view in full size
               </p>
             </div>

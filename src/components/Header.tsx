@@ -30,7 +30,7 @@ export default function Header() {
               height={20}
               className="rounded"
             />
-            <span className="font-semibold text-gray-900 text-2xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            <span className="font-semibold text-gray-900 text-xl typography-h5">
               Mannmish Design Studio
             </span>
           </Link>
@@ -43,12 +43,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-3 py-2 text-lg font-medium transition-colors duration-200 relative group ${
+                  className={`px-3 py-2 text-lg font-medium transition-colors duration-200 relative group typography-body ${
                     isActive 
                       ? 'text-gray-900' 
                       : 'text-gray-700 hover:text-gray-900'
                   }`}
-                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 >
                   {item.name}
                   <span className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 transition-transform duration-200 ${
@@ -80,12 +79,11 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`block px-3 py-2 text-lg font-medium rounded-md transition-colors duration-200 ${
+                    className={`block px-3 py-2 text-lg font-medium rounded-md transition-colors duration-200 typography-body ${
                       isActive 
                         ? 'text-gray-900 bg-gray-100' 
                         : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
                     }`}
-                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}

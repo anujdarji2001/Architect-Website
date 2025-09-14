@@ -12,7 +12,7 @@ const ComingSoon = () => {
         <meta name="description" content="Mannmish Design Studio is coming soon. Architecture, Interior, Construction." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       <style>{`
         @keyframes fadeIn {
@@ -34,7 +34,7 @@ const ComingSoon = () => {
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #F7F5F3 0%, #F0EBE6 30%, #E8DDD6 70%, #DFD2C7 100%)',
         color: '#1A1A1A',
-        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+        fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif',
         textAlign: 'center',
         padding: '40px 20px',
         position: 'relative',
@@ -103,7 +103,7 @@ const ComingSoon = () => {
         </div>
         <div style={{ position: 'relative', zIndex: 10 }}>
           <div style={{
-            fontFamily: 'Inter, sans-serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '0.9rem',
             fontWeight: 300,
             letterSpacing: '0.3em',
@@ -114,7 +114,7 @@ const ComingSoon = () => {
             Architecture • Interior • Construction
           </div>
           <h1 style={{
-            fontFamily: 'Cormorant Garamond, serif',
+            fontFamily: 'Montserrat, sans-serif',
             fontSize: '3.5rem',
             fontWeight: 300,
             margin: '0 0 10px',
@@ -133,7 +133,7 @@ const ComingSoon = () => {
             maxWidth: '700px',
             margin: '0 auto 40px',
             color: '#4A4A4A',
-            fontFamily: 'Crimson Text, serif',
+            fontFamily: 'Montserrat, sans-serif',
               fontStyle: 'italic'
           }} className="fade-in fade-in-delay-1">
             Where vision meets craftsmanship. We create spaces that tell stories,
@@ -178,7 +178,7 @@ const ComingSoon = () => {
               marginBottom: '10px'
             }}>Social Media</div>
             <h2 style={{
-              fontFamily: 'Cormorant Garamond, serif',
+              fontFamily: 'Montserrat, sans-serif',
               fontSize: '1.7rem',
               letterSpacing: '0.05em',
               fontWeight: 300,

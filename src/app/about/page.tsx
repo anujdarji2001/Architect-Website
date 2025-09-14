@@ -11,8 +11,6 @@ export default function AboutPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -64,18 +62,11 @@ export default function AboutPage() {
               />
             </div>
             
-            <h1 className="fade-in fade-in-delay-1" style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              color: '#1A1A1A',
-              marginBottom: '1.5rem'
-            }}>
+            <h1 className="fade-in fade-in-delay-1 page-title">
               About Mannmish Design Studio
             </h1>
             
-            <p className="fade-in fade-in-delay-2 max-w-3xl mx-auto text-lg text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            <p className="fade-in fade-in-delay-2 page-subtitle">
               Founded with a passion for creating exceptional spaces, we bring together 
               technical expertise and creative vision to transform architectural dreams into reality.
             </p>
@@ -87,16 +78,10 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '2rem'
-                }}>
+                <h2 className="typography-h2 mb-8">
                   Our Story
                 </h2>
-                <div className="space-y-6 text-gray-600 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <div className="space-y-6 typography-body">
                   <p>
                     Mannmish Design Studio was born from a shared vision of creating spaces 
                     that not only serve their functional purpose but also inspire and elevate 
@@ -124,29 +109,29 @@ export default function AboutPage() {
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <Calendar className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.founded}</div>
-                      <div className="text-sm text-gray-600">Founded</div>
+                      <div className="typography-h3 text-gray-900 mb-2">{companyData.company.founded}</div>
+                      <div className="typography-body-small">Founded</div>
                     </div>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <Users className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
-                      <div className="text-sm text-gray-600">Projects Completed</div>
+                      <div className="typography-h3 text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
+                      <div className="typography-body-small">Projects Completed</div>
                     </div>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <Award className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.stats.clientSatisfaction}%</div>
-                      <div className="text-sm text-gray-600">Client Satisfaction</div>
+                      <div className="typography-h3 text-gray-900 mb-2">{companyData.company.stats.clientSatisfaction}%</div>
+                      <div className="typography-body-small">Client Satisfaction</div>
                     </div>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full mb-4">
                         <MapPin className="h-6 w-6 text-gray-700" />
                       </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">{companyData.company.location.state}</div>
-                      <div className="text-sm text-gray-600">Based in {companyData.company.location.city}</div>
+                      <div className="typography-h3 text-gray-900 mb-2">{companyData.company.location.state}</div>
+                      <div className="typography-body-small">Based in {companyData.company.location.city}</div>
                     </div>
                   </div>
                 </div>
@@ -161,16 +146,10 @@ export default function AboutPage() {
         }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Meet Our Team
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 Our collaborative approach combines diverse expertise to deliver 
                 comprehensive design and construction solutions.
               </p>
@@ -183,11 +162,11 @@ export default function AboutPage() {
                     <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                       <Users className="h-10 w-10 text-gray-500" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">{member.name}</h3>
-                    <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">{member.qualifications}</p>
+                    <h3 className="typography-h3 text-gray-900 mb-2">{member.name}</h3>
+                    <p className="typography-caption mb-4">{member.qualifications}</p>
                   </div>
                   <div className="text-left space-y-4">
-                    <p className="text-gray-600">
+                    <p className="typography-body">
                       {member.description}
                     </p>
                   </div>
@@ -201,16 +180,10 @@ export default function AboutPage() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Our Design Philosophy
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 We believe in creating spaces that are both functional and beautiful, 
                 sustainable and innovative, timeless yet contemporary.
               </p>
@@ -221,8 +194,8 @@ export default function AboutPage() {
                 <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Users className="h-8 w-8 text-gray-700" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Client-Centric</h3>
-                <p className="text-gray-600">
+                <h3 className="typography-h4 mb-4 text-gray-900">Client-Centric</h3>
+                <p className="typography-body">
                   Every project begins with understanding our clients&apos; unique needs, 
                   lifestyle, and vision. We collaborate closely throughout the design process.
                 </p>
@@ -232,8 +205,8 @@ export default function AboutPage() {
                 <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Award className="h-8 w-8 text-gray-700" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Quality Excellence</h3>
-                <p className="text-gray-600">
+                <h3 className="typography-h4 mb-4 text-gray-900">Quality Excellence</h3>
+                <p className="typography-body">
                   We maintain the highest standards in design execution, material selection, 
                   and construction supervision to ensure lasting quality.
                 </p>
@@ -243,8 +216,8 @@ export default function AboutPage() {
                 <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <MapPin className="h-8 w-8 text-gray-700" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Sustainable Design</h3>
-                <p className="text-gray-600">
+                <h3 className="typography-h4 mb-4 text-gray-900">Sustainable Design</h3>
+                <p className="typography-body">
                   Environmental responsibility is integral to our design process. We create 
                   spaces that are energy-efficient and environmentally conscious.
                 </p>
@@ -259,13 +232,7 @@ export default function AboutPage() {
         }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Visit Our Studio
               </h2>
             </div>
@@ -273,17 +240,17 @@ export default function AboutPage() {
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg max-w-2xl mx-auto text-center">
               <div className="mb-6">
                 <MapPin className="h-12 w-12 text-gray-700 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Studio Address</h3>
+                <h3 className="typography-h4 text-gray-900 mb-4">Studio Address</h3>
               </div>
               
-              <div className="space-y-2 text-gray-600">
+              <div className="space-y-2 typography-body">
                 <p className="font-medium">804, Colonnade 2, Near One World Capital</p>
                 <p>B/h. Rajpath Club, Vikramnagar, Bodakdev</p>
                 <p>Ahmedabad - 380054, Gujarat</p>
               </div>
               
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <p className="text-gray-600 mb-4">Ready to discuss your project?</p>
+                <p className="typography-body mb-4">Ready to discuss your project?</p>
                 <div className="flex justify-center">
                   <a 
                     href="tel:+919662002521"

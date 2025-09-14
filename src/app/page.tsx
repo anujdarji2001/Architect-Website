@@ -64,8 +64,6 @@ export default function HomePage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
@@ -188,41 +186,25 @@ export default function HomePage() {
             <div className="text-center">
               {/* Enhanced Logo */}
               <div className="fade-in mb-12">
-                <div className="relative inline-block">
-                  <div style={{
-                    position: 'absolute',
-                    inset: '-20px',
-                    background: 'linear-gradient(45deg, rgba(26,26,26,0.05), rgba(26,26,26,0.1))',
-                    borderRadius: '50%',
-                    animation: 'pulse 3s ease-in-out infinite',
-                  }} />
-                  <Image
-                    src="/logo.jpg"
-                    alt="Mannmish Design Studio Logo"
-                    width={220}
-                    height={110}
-                    className="mx-auto rounded-2xl relative z-10"
-                    priority
-                    style={{
-                      filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.12))',
-                      transition: 'transform 0.3s ease',
-                    }}
-                  />
-                </div>
+                <Image
+                  src="/logo.jpg"
+                  alt="Mannmish Design Studio Logo"
+                  width={220}
+                  height={110}
+                  className="mx-auto rounded-2xl"
+                  priority
+                  style={{
+                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.12))',
+                    transition: 'transform 0.3s ease',
+                  }}
+                />
               </div>
               
               {/* Enhanced Tagline */}
               <div className="fade-in fade-in-delay-1 mb-8">
                 <div className="inline-flex items-center space-x-4 px-6 py-3 bg-white/60 backdrop-blur-sm rounded-full border border-white/20">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
-                  <p style={{
-                    fontFamily: 'Inter, sans-serif',
-                    fontSize: '0.95rem',
-                    fontWeight: 400,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: '#666666',
-                  }}>
+                  <p className="typography-caption">
                     Architecture • Interior • Construction
                   </p>
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
@@ -230,28 +212,12 @@ export default function HomePage() {
               </div>
               
               {/* Enhanced Main Title */}
-              <h1 className="fade-in fade-in-delay-1 mb-8" style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: 'clamp(3rem, 5vw, 4.5rem)',
-                fontWeight: 300,
-                letterSpacing: '-0.02em',
-                lineHeight: '1.05',
-                color: '#1A1A1A',
-                textShadow: '0 2px 4px rgba(0,0,0,0.05)',
-              }}>
+              <h1 className="fade-in fade-in-delay-1 mb-8 typography-display">
                 Mannmish Design Studio
               </h1>
               
               {/* Enhanced Description */}
-              <p className="fade-in fade-in-delay-2 max-w-4xl mx-auto mb-16" style={{
-                fontSize: '1.4rem',
-                fontWeight: 300,
-                lineHeight: '1.8',
-                color: '#4A4A4A',
-                fontFamily: 'Cormorant Garamond, serif',
-                fontStyle: 'italic',
-                textShadow: '0 1px 2px rgba(0,0,0,0.03)',
-              }}>
+              <p className="fade-in fade-in-delay-2 max-w-4xl mx-auto mb-16 typography-body-large">
                 Where vision meets craftsmanship. We create spaces that tell stories,
                 blending contemporary design with timeless elegance.
               </p>
@@ -260,16 +226,15 @@ export default function HomePage() {
               <div className="fade-in fade-in-delay-3 flex flex-col sm:flex-row items-center justify-center gap-6">
                 <Link
                   href="/projects"
-                  className="group inline-flex items-center px-10 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 font-medium text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                  className="group inline-flex items-center px-10 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 typography-button"
                 >
                   View Our Work
                   <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center px-10 py-4 bg-white/80 backdrop-blur-sm text-gray-900 rounded-full hover:bg-white transition-all duration-300 font-medium text-lg border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                  className="group inline-flex items-center px-10 py-4 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-all duration-300 border-2 border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 typography-button"
+                  style={{ color: '#1a1a1a' }}
                 >
                   Start Your Project
                   <Phone className="ml-3 h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
@@ -284,16 +249,10 @@ export default function HomePage() {
         <section className="py-20 bg-white">
           <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Our Work Gallery
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 A visual journey through our design philosophy and creative excellence.
               </p>
             </div>
@@ -305,15 +264,15 @@ export default function HomePage() {
                     <div key={project.id} className="w-full flex-shrink-0">
                       <div className="relative h-[60vh] lg:h-[70vh] xl:h-[80vh]">
                         <Image
-                          src={project.carouselImage}
-                          alt={project.carouselTitle}
+                          src={project.carouselImage || "/logo.jpg"}
+                          alt={project.carouselTitle || project.title}
                           fill
                           className="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <div className="absolute bottom-6 left-6 text-white">
-                          <h3 className="text-2xl font-semibold mb-2">{project.carouselTitle}</h3>
-                          <p className="text-white/90">{project.carouselSubtitle}</p>
+                          <h3 className="text-2xl font-semibold mb-2">{project.carouselTitle || project.title}</h3>
+                          <p className="text-white/90">{project.carouselSubtitle || project.description}</p>
                         </div>
                       </div>
                     </div>
@@ -390,16 +349,10 @@ export default function HomePage() {
         }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Our Expertise
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 Three core areas where we excel, combining technical expertise with creative vision.
               </p>
             </div>
@@ -421,20 +374,14 @@ export default function HomePage() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-white/60 backdrop-blur-sm rounded-full mb-6">
                   <Building className="h-8 w-8 text-gray-700" />
                 </div>
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '1.5rem'
-                }}>
+                <h3 className="typography-h2 mb-6">
                   Architecture
                 </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <p className="typography-body-large mb-6">
                   We create innovative architectural solutions that balance functionality with aesthetic excellence. 
                   Our designs are not just buildings, but spaces that inspire and enhance the human experience.
                 </p>
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 typography-body">
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
                     Residential & Commercial Design
@@ -461,20 +408,14 @@ export default function HomePage() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-white/60 backdrop-blur-sm rounded-full mb-6">
                   <Home className="h-8 w-8 text-gray-700" />
                 </div>
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '1.5rem'
-                }}>
+                <h3 className="typography-h2 mb-6">
                   Interior Design
                 </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <p className="typography-body-large mb-6">
                   We transform interior spaces into beautiful, functional environments that reflect your 
                   personality and enhance your lifestyle. Every detail is carefully considered and curated.
                 </p>
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 typography-body">
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
                     Space Planning & Layout Design
@@ -523,20 +464,14 @@ export default function HomePage() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-white/60 backdrop-blur-sm rounded-full mb-6">
                   <Hammer className="h-8 w-8 text-gray-700" />
                 </div>
-                <h3 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '1.5rem'
-                }}>
+                <h3 className="typography-h2 mb-6">
                   Construction
                 </h3>
-                <p className="text-gray-600 text-lg mb-6 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <p className="typography-body-large mb-6">
                   Our construction management ensures precision delivery from concept to completion. 
                   We maintain the highest quality standards while keeping projects on time and within budget.
                 </p>
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 typography-body">
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
                     Project Planning & Scheduling
@@ -563,16 +498,10 @@ export default function HomePage() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 What Our Clients Say
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 Don't just take our word for it. Here's what our clients have to say about working with us.
               </p>
             </div>
@@ -588,13 +517,13 @@ export default function HomePage() {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-gray-600 italic mb-4">
+                    <p className="typography-body italic mb-4">
                       "{testimonial.testimonial}"
                     </p>
                   </div>
                   <div className="border-t border-gray-200 pt-4">
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.projectType} Project, {testimonial.location}</p>
+                    <h4 className="typography-h5">{testimonial.name}</h4>
+                    <p className="typography-body-small">{testimonial.projectType} Project, {testimonial.location}</p>
                   </div>
                 </div>
               ))}
@@ -609,16 +538,10 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '1.5rem'
-                }}>
+                <h2 className="typography-h2 mb-6">
                   Meet Our Team
                 </h2>
-                <p className="text-gray-600 text-lg mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <p className="typography-body-large mb-8">
                   Our design studio combines the technical expertise of civil engineering 
                   with the creative vision of architectural planning and interior design.
                 </p>
@@ -633,12 +556,12 @@ export default function HomePage() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
-                  <h3 className="font-semibold text-gray-900 mb-2">Manank Patel</h3>
-                  <p className="text-sm text-gray-600 uppercase tracking-wide">B.E. Civil</p>
+                  <h3 className="typography-h5 mb-2">Manank Patel</h3>
+                  <p className="typography-caption">B.E. Civil</p>
                 </div>
                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
-                  <h3 className="font-semibold text-gray-900 mb-2">Michelle Chokshi</h3>
-                  <p className="text-sm text-gray-600 uppercase tracking-wide">B.Arch (COA), M.Plan (ITPI)</p>
+                  <h3 className="typography-h5 mb-2">Michelle Chokshi</h3>
+                  <p className="typography-caption">B.Arch (COA), M.Plan (ITPI)</p>
                 </div>
               </div>
             </div>
@@ -648,20 +571,16 @@ export default function HomePage() {
         {/* CTA Section */}
         <section className="py-20 bg-gray-900 text-white mb-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: '2.5rem',
-              fontWeight: 300,
-              marginBottom: '1.5rem'
-            }}>
+            <h2 className="typography-h2 mb-6" style={{ color: 'white' }}>
               Ready to Start Your Project?
             </h2>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="typography-body-large mb-8 max-w-2xl mx-auto" style={{ color: '#d1d5db' }}>
               Let&apos;s discuss your vision and create something extraordinary together.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-200 font-medium"
+              className="inline-flex items-center px-8 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-200 typography-button"
+              style={{ color: '#1a1a1a' }}
             >
               Get In Touch
               <ArrowRight className="ml-2 h-5 w-5" />

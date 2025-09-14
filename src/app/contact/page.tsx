@@ -67,8 +67,6 @@ export default function ContactPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -106,18 +104,11 @@ export default function ContactPage() {
           }} />
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="fade-in" style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              color: '#1A1A1A',
-              marginBottom: '1.5rem'
-            }}>
+            <h1 className="fade-in page-title">
               Get In Touch
             </h1>
             
-            <p className="fade-in fade-in-delay-1 max-w-3xl mx-auto text-lg text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            <p className="fade-in fade-in-delay-1 page-subtitle">
               Ready to bring your vision to life? We'd love to hear about your project 
               and discuss how we can help create something extraordinary together.
             </p>
@@ -130,13 +121,7 @@ export default function ContactPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
               {/* Contact Information */}
               <div className="fade-in">
-                <h2 style={{
-                  fontFamily: 'Cormorant Garamond, serif',
-                  fontSize: '2.5rem',
-                  fontWeight: 300,
-                  color: '#1A1A1A',
-                  marginBottom: '2rem'
-                }}>
+                <h2 className="typography-h2 mb-8">
                   Let's Connect
                 </h2>
                 
@@ -147,8 +132,8 @@ export default function ContactPage() {
                       <MapPin className="h-6 w-6 text-gray-700" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Visit Our Studio</h3>
-                      <div className="text-gray-600 space-y-1">
+                      <h3 className="typography-h4 text-gray-900 mb-2">Visit Our Studio</h3>
+                      <div className="typography-body space-y-1">
                         <p>{companyData.company.location.address}</p>
                         <p>{companyData.company.location.area}</p>
                         <p>{companyData.company.location.city} - {companyData.company.location.pincode}, {companyData.company.location.state}</p>
@@ -162,8 +147,8 @@ export default function ContactPage() {
                       <Phone className="h-6 w-6 text-gray-700" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Call Us</h3>
-                      <div className="text-gray-600 space-y-1">
+                      <h3 className="typography-h4 text-gray-900 mb-2">Call Us</h3>
+                      <div className="typography-body space-y-1">
                         <p><strong>Contact:</strong> {companyData.company.contact.phone}</p>
                       </div>
                     </div>
@@ -175,10 +160,10 @@ export default function ContactPage() {
                       <Mail className="h-6 w-6 text-gray-700" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Us</h3>
+                      <h3 className="typography-h4 text-gray-900 mb-2">Email Us</h3>
                       <a 
                         href={`mailto:${companyData.company.contact.email}`}
-                        className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                        className="typography-link hover:text-gray-900 transition-colors duration-200"
                       >
                         {companyData.company.contact.email}
                       </a>
@@ -191,8 +176,8 @@ export default function ContactPage() {
                       <Clock className="h-6 w-6 text-gray-700" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Hours</h3>
-                      <div className="text-gray-600 space-y-1">
+                      <h3 className="typography-h4 text-gray-900 mb-2">Business Hours</h3>
+                      <div className="typography-body space-y-1">
                         <p>Monday - Friday: {companyData.company.businessHours.weekdays}</p>
                         <p>Saturday: {companyData.company.businessHours.saturday}</p>
                         <p>Sunday: {companyData.company.businessHours.sunday}</p>
@@ -205,21 +190,15 @@ export default function ContactPage() {
               {/* Contact Form */}
               <div className="fade-in fade-in-delay-1">
                 <div className="bg-gray-50 rounded-2xl p-8">
-                  <h3 style={{
-                    fontFamily: 'Cormorant Garamond, serif',
-                    fontSize: '2rem',
-                    fontWeight: 300,
-                    color: '#1A1A1A',
-                    marginBottom: '2rem'
-                  }}>
+                  <h3 className="typography-h2 mb-8">
                     Send us a Message
                   </h3>
 
                   {isSubmitted ? (
                     <div className="text-center py-8">
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h4>
-                      <p className="text-gray-600">Thank you for reaching out. We've sent you a confirmation email and will get back to you within 24 hours.</p>
+                      <h4 className="typography-h4 text-gray-900 mb-2">Message Sent!</h4>
+                      <p className="typography-body">Thank you for reaching out. We've sent you a confirmation email and will get back to you within 24 hours.</p>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -239,7 +218,7 @@ export default function ContactPage() {
                       )}
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                          <label htmlFor="name" className="block typography-body-small font-medium text-gray-700 mb-2">
                             Full Name *
                           </label>
                           <input
@@ -254,7 +233,7 @@ export default function ContactPage() {
                           />
                         </div>
                         <div>
-                          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                          <label htmlFor="email" className="block typography-body-small font-medium text-gray-700 mb-2">
                             Email Address *
                           </label>
                           <input
@@ -272,7 +251,7 @@ export default function ContactPage() {
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                          <label htmlFor="phone" className="block typography-body-small font-medium text-gray-700 mb-2">
                             Phone Number
                           </label>
                           <input
@@ -286,7 +265,7 @@ export default function ContactPage() {
                           />
                         </div>
                         <div>
-                          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                          <label htmlFor="subject" className="block typography-body-small font-medium text-gray-700 mb-2">
                             Subject *
                           </label>
                           <select
@@ -308,7 +287,7 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="message" className="block typography-body-small font-medium text-gray-700 mb-2">
                           Message *
                         </label>
                         <textarea
@@ -326,7 +305,7 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200 font-medium flex items-center justify-center"
+                        className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200 typography-button flex items-center justify-center"
                       >
                         {isLoading ? (
                           <>
@@ -357,16 +336,10 @@ export default function ContactPage() {
         }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Find Us
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 Visit our studio in the heart of Ahmedabad. We're conveniently located 
                 near major landmarks and easily accessible by public transport.
               </p>
@@ -388,8 +361,8 @@ export default function ContactPage() {
               <div className="p-6 bg-white">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">Mannmish Design Studio</h3>
-                    <p className="text-gray-600 text-sm">
+                    <h3 className="typography-h4 text-gray-900 mb-1">Mannmish Design Studio</h3>
+                    <p className="typography-body-small">
                       {companyData.company.location.address}<br />
                       {companyData.company.location.area}<br />
                       {companyData.company.location.city} - {companyData.company.location.pincode}, {companyData.company.location.state}
@@ -399,7 +372,7 @@ export default function ContactPage() {
                     href="https://maps.google.com/?q=23.03224051596592,72.5006522760154"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium"
+                    className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 typography-button"
                   >
                     Get Directions
                   </a>

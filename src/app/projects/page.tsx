@@ -22,8 +22,6 @@ export default function ProjectsPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
-        
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -61,18 +59,11 @@ export default function ProjectsPage() {
           }} />
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="fade-in" style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              color: '#1A1A1A',
-              marginBottom: '1.5rem'
-            }}>
+            <h1 className="fade-in page-title">
               Our Projects
             </h1>
             
-            <p className="fade-in fade-in-delay-1 max-w-3xl mx-auto text-lg text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            <p className="fade-in fade-in-delay-1 page-subtitle">
               Explore our portfolio of architectural and interior design projects. 
               Each project tells a unique story of innovation, functionality, and aesthetic excellence.
             </p>
@@ -130,19 +121,19 @@ export default function ProjectsPage() {
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
+                    <h3 className="typography-h4 text-gray-900 mb-2">{project.title}</h3>
+                    <p className="typography-body-small mb-4 line-clamp-2">{project.description}</p>
                     
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center typography-body-small text-gray-500">
                         <MapPin className="h-4 w-4 mr-2" />
                         {project.location}
                       </div>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center typography-body-small text-gray-500">
                         <Calendar className="h-4 w-4 mr-2" />
                         {project.year}
                       </div>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center typography-body-small text-gray-500">
                         <Building className="h-4 w-4 mr-2" />
                         {project.area}
                       </div>
@@ -150,12 +141,12 @@ export default function ProjectsPage() {
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.features.slice(0, 2).map((feature, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                        <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 typography-caption rounded">
                           {feature}
                         </span>
                       ))}
                       {project.features.length > 2 && (
-                        <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                        <span className="px-2 py-1 bg-gray-100 text-gray-700 typography-caption rounded">
                           +{project.features.length - 2} more
                         </span>
                       )}
@@ -163,7 +154,7 @@ export default function ProjectsPage() {
                     
                     <Link 
                       href={`/projects/${project.id}`}
-                      className="w-full bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium flex items-center justify-center"
+                      className="w-full bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200 typography-button flex items-center justify-center"
                     >
                       View Details
                       <ExternalLink className="ml-2 h-4 w-4" />
@@ -176,8 +167,8 @@ export default function ProjectsPage() {
             {filteredProjects.length === 0 && (
               <div className="text-center py-12">
                 <Building className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No projects found</h3>
-                <p className="text-gray-600">Try selecting a different category to view more projects.</p>
+                <h3 className="typography-h4 text-gray-900 mb-2">No projects found</h3>
+                <p className="typography-body">Try selecting a different category to view more projects.</p>
               </div>
             )}
           </div>
@@ -189,71 +180,31 @@ export default function ProjectsPage() {
         }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 style={{
-                fontFamily: 'Cormorant Garamond, serif',
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                color: '#1A1A1A',
-                marginBottom: '1rem'
-              }}>
+              <h2 className="typography-h2 mb-4">
                 Our Impact
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              <p className="typography-body-large max-w-2xl mx-auto">
                 Numbers that reflect our commitment to excellence and client satisfaction.
               </p>
             </div>
 
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
-                <div className="text-gray-600">Projects Completed</div>
+                <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
+                <div className="typography-body">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.clientSatisfaction}%</div>
-                <div className="text-gray-600">Client Satisfaction</div>
+                <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.clientSatisfaction}%</div>
+                <div className="typography-body">Client Satisfaction</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.yearsExperience}+</div>
-                <div className="text-gray-600">Years Experience</div>
+                <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.yearsExperience}+</div>
+                <div className="typography-body">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-gray-900 mb-2">{companyData.company.stats.citiesServed}+</div>
-                <div className="text-gray-600">Cities Served</div>
+                <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.citiesServed}+</div>
+                <div className="typography-body">Cities Served</div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 lg:py-20 bg-gray-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: '2.5rem',
-              fontWeight: 300,
-              marginBottom: '1.5rem'
-            }}>
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-              Let's discuss your vision and create something extraordinary together. 
-              Our team is ready to bring your ideas to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="inline-flex items-center px-8 py-3 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-200 font-medium"
-              >
-                Get In Touch
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
-                href="tel:+919662002521"
-                className="inline-flex items-center px-8 py-3 border border-white text-white rounded-md hover:bg-white hover:text-gray-900 transition-colors duration-200 font-medium"
-              >
-                Call Now
-                <Phone className="ml-2 h-5 w-5" />
-              </a>
             </div>
           </div>
         </section>
