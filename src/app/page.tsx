@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowRight, Building, Home, Hammer, Phone } from 'lucide-react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import testimonialsData from '../data/testimonials.json';
 import projectsData from '../data/projects.json';
 
@@ -22,21 +22,23 @@ export default function HomePage() {
     setCurrentSlide(slideIndex);
   };
 
-  const nextSlide = useCallback(() => {
+  const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
-  }, [carouselProjects.length]);
+  };
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? carouselProjects.length - 1 : prev - 1));
-  }, [carouselProjects.length]);
+  };
 
-  const startAutoScroll = useCallback(() => {
+  const startAutoScroll = () => {
     if (autoScrollInterval) {
       clearInterval(autoScrollInterval);
     }
-    const interval = setInterval(nextSlide, 4000);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
+    }, 4000);
     setAutoScrollInterval(interval);
-  }, [autoScrollInterval, nextSlide]);
+  };
 
   const stopAutoScroll = () => {
     if (autoScrollInterval) {
@@ -52,7 +54,7 @@ export default function HomePage() {
         clearInterval(autoScrollInterval);
       }
     };
-  }, [autoScrollInterval, startAutoScroll]);
+  }, []);
 
   useEffect(() => {
     const container = document.getElementById('carousel-container');
