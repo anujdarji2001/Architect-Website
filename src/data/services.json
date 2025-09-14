@@ -1,0 +1,114 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Architecture",
+      "icon": "Building",
+      "description": "We create innovative architectural solutions that balance functionality with aesthetic excellence. Our designs are not just buildings, but spaces that inspire and enhance the human experience.",
+      "features": [
+        "Residential & Commercial Design",
+        "Sustainable & Green Building",
+        "Structural Engineering Integration",
+        "Project Management & Supervision"
+      ],
+      "subServices": [
+        "Residential Architecture",
+        "Commercial Architecture",
+        "Institutional Design",
+        "Heritage Restoration",
+        "Sustainable Design",
+        "3D Visualization"
+      ],
+      "process": [
+        "Initial Consultation",
+        "Site Analysis",
+        "Concept Design",
+        "Detailed Design",
+        "Permit Documentation",
+        "Construction Supervision"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Interior Design",
+      "icon": "Home",
+      "description": "We transform interior spaces into beautiful, functional environments that reflect your personality and enhance your lifestyle. Every detail is carefully considered and curated.",
+      "features": [
+        "Space Planning & Layout Design",
+        "Material Selection & Sourcing",
+        "Custom Furniture Design",
+        "Lighting & Color Schemes"
+      ],
+      "subServices": [
+        "Residential Interiors",
+        "Commercial Interiors",
+        "Hospitality Design",
+        "Retail Design",
+        "Custom Furniture",
+        "Lighting Design"
+      ],
+      "process": [
+        "Client Briefing",
+        "Space Analysis",
+        "Concept Development",
+        "Material Selection",
+        "3D Visualization",
+        "Implementation"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Construction",
+      "icon": "Hammer",
+      "description": "Our construction management ensures precision delivery from concept to completion. We maintain the highest quality standards while keeping projects on time and within budget.",
+      "features": [
+        "Project Planning & Scheduling",
+        "Quality Control & Supervision",
+        "Vendor Management & Coordination",
+        "Cost Management & Budget Control"
+      ],
+      "subServices": [
+        "New Construction",
+        "Renovation & Remodeling",
+        "Structural Repairs",
+        "MEP Services",
+        "Landscaping",
+        "Project Management"
+      ],
+      "process": [
+        "Project Planning",
+        "Vendor Selection",
+        "Construction Scheduling",
+        "Quality Control",
+        "Progress Monitoring",
+        "Final Handover"
+      ]
+    }
+  ],
+  "additionalServices": [
+    {
+      "name": "Consultation",
+      "description": "Expert advice on design, construction, and project planning",
+      "duration": "1-2 hours",
+      "price": "Starting from ₹5,000"
+    },
+    {
+      "name": "Site Visit",
+      "description": "On-site assessment and recommendations",
+      "duration": "2-3 hours",
+      "price": "Starting from ₹10,000"
+    },
+    {
+      "name": "3D Visualization",
+      "description": "Photorealistic 3D renders of your project",
+      "duration": "1-2 weeks",
+      "price": "Starting from ₹25,000"
+    },
+    {
+      "name": "Permit Documentation",
+      "description": "Complete documentation for building permits",
+      "duration": "2-4 weeks",
+      "price": "Starting from ₹50,000"
+    }
+  ]
+}

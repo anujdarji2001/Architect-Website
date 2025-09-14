@@ -1,0 +1,70 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Rajesh & Priya Shah",
+      "project": "Modern Villa Design",
+      "location": "Ahmedabad, Gujarat",
+      "rating": 5,
+      "testimonial": "Mannmish Design Studio transformed our home beyond our expectations. Their attention to detail and creative solutions made our dream home a reality.",
+      "image": "/logo.jpg",
+      "projectType": "Residential",
+      "year": "2024"
+    },
+    {
+      "id": 2,
+      "name": "Amit Patel",
+      "project": "Office Renovation",
+      "location": "Vadodara, Gujarat",
+      "rating": 5,
+      "testimonial": "Professional, punctual, and incredibly talented. They delivered our office renovation on time and within budget. Highly recommended!",
+      "image": "/logo.jpg",
+      "projectType": "Commercial",
+      "year": "2023"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Neha Gupta",
+      "project": "Luxury Apartment Interior",
+      "location": "Gandhinagar, Gujarat",
+      "rating": 5,
+      "testimonial": "From concept to completion, the team was exceptional. Their innovative design approach and quality construction exceeded all our expectations.",
+      "image": "/logo.jpg",
+      "projectType": "Interior Design",
+      "year": "2023"
+    },
+    {
+      "id": 4,
+      "name": "Heritage Hospitality Group",
+      "project": "Restaurant Renovation",
+      "location": "Surat, Gujarat",
+      "rating": 5,
+      "testimonial": "They perfectly balanced heritage preservation with modern functionality. Our restaurant now has a unique character that customers love.",
+      "image": "/logo.jpg",
+      "projectType": "Commercial",
+      "year": "2023"
+    },
+    {
+      "id": 5,
+      "name": "Patel Family",
+      "project": "Home Extension",
+      "location": "Rajkot, Gujarat",
+      "rating": 5,
+      "testimonial": "The extension feels like it was always part of our original home. Their design seamlessly integrated with our existing structure.",
+      "image": "/logo.jpg",
+      "projectType": "Residential",
+      "year": "2023"
+    },
+    {
+      "id": 6,
+      "name": "Royal Heritage Hotels",
+      "project": "Boutique Hotel Interior",
+      "location": "Udaipur, Rajasthan",
+      "rating": 5,
+      "testimonial": "Their luxury design approach created an unforgettable guest experience. Every detail reflects the heritage and elegance we wanted.",
+      "image": "/logo.jpg",
+      "projectType": "Interior Design",
+      "year": "2024"
+    }
+  ]
+}

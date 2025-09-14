@@ -1,0 +1,51 @@
+{
+  "company": {
+    "name": "Mannmish Design Studio",
+    "tagline": "Where vision meets craftsmanship",
+    "description": "We create spaces that tell stories, blending contemporary design with timeless elegance.",
+    "founded": "2020",
+    "location": {
+      "address": "804, Colonnade 2, Near One World Capital",
+      "area": "B/h. Rajpath Club, Vikramnagar, Bodakdev",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pincode": "380054",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "+91 9662002521",
+      "email": "mannmishdesignstudio@gmail.com",
+      "website": "https://mannmishdesignstudio.com",
+      "instagram": "https://www.instagram.com/mannmishdesignstudio"
+    },
+    "businessHours": {
+      "weekdays": "9:00 AM - 6:00 PM",
+      "saturday": "10:00 AM - 4:00 PM",
+      "sunday": "By Appointment"
+    },
+    "specializations": [
+      "Architecture",
+      "Interior Design", 
+      "Construction"
+    ],
+    "values": [
+      "Client-Centric Approach",
+      "Quality Excellence",
+      "Sustainable Design",
+      "Innovation",
+      "Timely Delivery"
+    ],
+    "certifications": [
+      "Council of Architecture (COA) Registered",
+      "Institute of Town Planners India (ITPI) Member",
+      "Green Building Council Member"
+    ],
+    "stats": {
+      "projectsCompleted": 50,
+      "clientSatisfaction": 100,
+      "yearsExperience": 5,
+      "citiesServed": 15,
+      "teamSize": 12
+    }
+  }
+}

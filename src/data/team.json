@@ -1,0 +1,58 @@
+{
+  "team": [
+    {
+      "id": 1,
+      "name": "Manank Patel",
+      "role": "Civil Engineer & Co-Founder",
+      "qualifications": "B.E. Civil Engineering",
+      "specialization": "Structural Engineering, Project Management",
+      "experience": "5+ years",
+      "description": "With a strong foundation in civil engineering, Manank brings technical precision and structural expertise to every project. His engineering background ensures that all designs are not only aesthetically pleasing but also structurally sound and compliant with safety standards.",
+      "image": "/logo.jpg",
+      "email": "manank@mannmishdesignstudio.com",
+      "phone": "+91 9662002521",
+      "linkedin": "https://linkedin.com/in/manank-patel",
+      "expertise": [
+        "Structural Design",
+        "Project Planning",
+        "Construction Management",
+        "Quality Control",
+        "Cost Estimation"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Michelle Chokshi",
+      "role": "Architect & Co-Founder",
+      "qualifications": "B.Arch (COA), M.Plan (ITPI)",
+      "specialization": "Architectural Design, Master Planning",
+      "experience": "6+ years",
+      "description": "Michelle combines her architectural design expertise with master planning knowledge to create holistic design solutions. Her qualifications from the Council of Architecture and Institute of Town Planners ensure comprehensive spatial planning and design excellence.",
+      "image": "/logo.jpg",
+      "email": "michelle@mannmishdesignstudio.com",
+      "phone": "+91 9876543210",
+      "linkedin": "https://linkedin.com/in/michelle-chokshi",
+      "expertise": [
+        "Architectural Design",
+        "Interior Design",
+        "Master Planning",
+        "Sustainable Design",
+        "Client Consultation"
+      ]
+    }
+  ],
+  "companyStats": {
+    "founded": "2020",
+    "projectsCompleted": "50+",
+    "clientSatisfaction": "100%",
+    "yearsExperience": "5+",
+    "citiesServed": "15+",
+    "teamSize": "12+",
+    "awards": "3",
+    "certifications": [
+      "Council of Architecture (COA) Registered",
+      "Institute of Town Planners India (ITPI) Member",
+      "Green Building Council Member"
+    ]
+  }
+}
