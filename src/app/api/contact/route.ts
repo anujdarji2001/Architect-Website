@@ -1,6 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as nodemailer from 'nodemailer';
 
+// Create transporter once and reuse it for better performance
+let transporter: nodemailer.Transporter | null = null;
+
+function getTransporter() {
+  if (!transporter) {
+    transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+      pool: true, // Enable connection pooling
+      maxConnections: 5, // Maximum number of connections
+      maxMessages: 100, // Maximum messages per connection
+      rateDelta: 20000, // Rate limiting
+      rateLimit: 5, // Max 5 emails per rateDelta
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 5000, // 5 seconds
+      socketTimeout: 10000, // 10 seconds
+    });
+  }
+  return transporter;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -14,14 +38,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter using Gmail
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER, // Your Gmail address
-        pass: process.env.GMAIL_APP_PASSWORD, // Your Gmail app password
-      },
-    });
+    // Get the reusable transporter
+    const emailTransporter = getTransporter();
+    
+    if (!emailTransporter) {
+      return NextResponse.json(
+        { error: 'Email service unavailable' },
+        { status: 500 }
+      );
+    }
 
     // Email to you (studio)
     const studioEmailHtml = `
@@ -120,21 +145,42 @@ export async function POST(request: NextRequest) {
       </div>
     `;
 
-    // Send email to studio
-    await transporter.sendMail({
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER, // Your studio email
-      subject: `New Contact Form Submission - ${subject}`,
-      html: studioEmailHtml,
-    });
+    // Send both emails in parallel for better performance
+    const [studioResult, clientResult] = await Promise.allSettled([
+      // Send email to studio
+      emailTransporter.sendMail({
+        from: process.env.GMAIL_USER,
+        to: process.env.GMAIL_USER, // Your studio email
+        subject: `New Contact Form Submission - ${subject}`,
+        html: studioEmailHtml,
+      }),
+      // Send confirmation email to client
+      emailTransporter.sendMail({
+        from: process.env.GMAIL_USER,
+        to: email,
+        subject: 'Thank you for contacting Mannmish Design Studio',
+        html: clientEmailHtml,
+      })
+    ]);
 
-    // Send confirmation email to client
-    await transporter.sendMail({
-      from: process.env.GMAIL_USER,
-      to: email,
-      subject: 'Thank you for contacting Mannmish Design Studio',
-      html: clientEmailHtml,
-    });
+    // Check if both emails were sent successfully
+    if (studioResult.status === 'rejected' || clientResult.status === 'rejected') {
+      console.error('Email sending failed:', {
+        studio: studioResult.status === 'rejected' ? studioResult.reason : 'success',
+        client: clientResult.status === 'rejected' ? clientResult.reason : 'success'
+      });
+      
+      // If studio email failed, that's critical - return error
+      if (studioResult.status === 'rejected') {
+        return NextResponse.json(
+          { error: 'Failed to send notification email' },
+          { status: 500 }
+        );
+      }
+      
+      // If only client email failed, still return success but log it
+      console.warn('Client confirmation email failed, but studio notification sent successfully');
+    }
 
     return NextResponse.json(
       { message: 'Email sent successfully' },
