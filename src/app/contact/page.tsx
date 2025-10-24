@@ -261,7 +261,7 @@ export default function ContactPage() {
                             value={formData.phone}
                             onChange={handleInputChange}
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500"
-                            placeholder="+91 98765 43210"
+                            placeholder="Your phone number"
                           />
                         </div>
                         <div>
@@ -348,14 +348,14 @@ export default function ContactPage() {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="h-96 w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.769322916302!2d72.5006522760154!3d23.03224051596592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9bca35f508ab%3A0xe7538a44f1998b53!2sColonade%202!5e0!3m2!1sen!2sin!4v1757835555263!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.759334995315!2d72.49825048634536!3d23.032607112251235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b474dda2b5b%3A0xa31400dea793f4f!2sCOLONNADE-2%2C%20Bodakdev%2C%20Ahmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1761280361681!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Mannmish Design Studio Location - Colonade 2"
+                  title="Mannmish Design Studio Location - Colonnade 2"
                 />
               </div>
               <div className="p-6 bg-white">
@@ -369,7 +369,7 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <a
-                    href="https://maps.google.com/?q=23.03224051596592,72.5006522760154"
+                    href="https://maps.app.goo.gl/Ci2nWFcbbC93RJhf9"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 typography-button"

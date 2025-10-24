@@ -9,20 +9,33 @@
       "year": "2024",
       "area": "4500 sq ft",
       "description": "A contemporary villa featuring clean lines, large glass facades, and seamless indoor-outdoor living spaces.",
-      "image": "/logo.jpg",
-      "carouselImage": "/logo.jpg",
+      "longDescription": "This stunning modern villa represents the perfect blend of contemporary design and functional living. The project spans 4500 square feet and features innovative architectural solutions that maximize natural light and ventilation.\n\nThe design emphasizes clean lines and geometric forms, creating a striking visual presence while maintaining harmony with the surrounding landscape. Large glass facades blur the boundaries between indoor and outdoor spaces, creating a seamless connection with nature.\n\nKey features include:\n- Open-plan living areas that flow naturally from one space to another\n- Floor-to-ceiling windows that flood the interior with natural light\n- Sustainable materials and energy-efficient systems\n- Landscaped outdoor areas that extend the living space\n- Custom-designed furniture that complements the architectural vision\n\nThe interior design follows the same minimalist principles, with carefully selected materials and finishes that enhance the overall aesthetic while ensuring comfort and livability.",
+      "image": "/projects/project-1/photos/interior-1.jpg",
+      "carouselImage": "/projects/project-1/photos/interior-3.jpg",
       "carouselTitle": "Modern Villa Design",
       "carouselSubtitle": "Contemporary design meets timeless elegance",
       "images": [
-        "/logo.jpg",
-        "/logo.jpg",
-        "/logo.jpg"
+        "/projects/project-1/photos/interior-1.jpg",
+        "/projects/project-1/photos/interior-2.jpg",
+        "/projects/project-1/photos/interior-3.jpg",
+        "/projects/project-1/photos/interior-4.jpg",
+        "/projects/project-1/photos/interior-5.jpg",
+        "/projects/project-1/photos/interior-6.jpg"
       ],
+      "video": {
+        "mp4": "/projects/project-1/videos/video.mp4",
+        "webm": "/projects/project-1/videos/video.webm",
+        "poster": "/projects/project-1/photos/hero.png"
+      },
       "features": [
-        "Modern Architecture 123",
+        "Modern Architecture",
         "Landscape Design", 
         "Interior Design",
-        "Smart Home Features"
+        "Smart Home Features",
+        "Sustainable Design",
+        "Custom Furniture",
+        "Energy Efficient Systems",
+        "Outdoor Living Spaces"
       ],
       "status": "Completed",
       "client": "Rajesh & Priya Shah",
@@ -38,20 +51,29 @@
       "year": "2024",
       "area": "12000 sq ft",
       "description": "A state-of-the-art office complex designed for productivity and employee well-being with sustainable features.",
+      "longDescription": "This corporate office complex represents the future of workplace design, combining functionality with employee well-being. The 12,000 square foot facility features open-plan layouts, natural lighting, and sustainable design elements.\n\nThe building incorporates modern architectural principles with a focus on energy efficiency and environmental responsibility. Large windows and skylights maximize natural light while reducing energy consumption.\n\nKey features include:\n- Open office layouts that promote collaboration\n- Green building materials and sustainable systems\n- Comprehensive parking solutions\n- Modern amenities and break areas\n- Flexible meeting spaces and conference rooms",
       "image": "/logo.jpg",
       "carouselImage": "/logo.jpg",
       "carouselTitle": "Corporate Office Complex",
       "carouselSubtitle": "Innovative solutions for business spaces",
       "images": [
-        "/logo.jpg",
-        "/logo.jpg",
-        "/logo.jpg"
+        "/projects/project-2/photos/hero.jpg",
+        "/projects/project-2/photos/exterior-1.jpg",
+        "/projects/project-2/photos/interior-1.jpg",
+        "/projects/project-2/photos/interior-2.jpg"
       ],
+      "video": {
+        "mp4": "/projects/project-2/videos/video.mp4",
+        "webm": "/projects/project-2/videos/video.webm",
+        "poster": "/projects/project-2/photos/hero.jpg"
+      },
       "features": [
         "Sustainable Design",
         "Open Office Layout",
         "Green Building",
-        "Parking Solutions"
+        "Parking Solutions",
+        "Energy Efficient",
+        "Modern Amenities"
       ],
       "status": "In Progress",
       "client": "TechCorp Solutions",
@@ -67,20 +89,30 @@
       "year": "2023",
       "area": "2800 sq ft",
       "description": "Elegant interior design for a luxury apartment featuring premium materials and custom furniture.",
+      "longDescription": "This luxury apartment interior showcases sophisticated design with premium materials and custom furniture. The 2,800 square foot space features elegant finishes and thoughtful space planning.\n\nThe design emphasizes luxury and comfort while maintaining functionality for modern living. Every detail has been carefully considered to create a cohesive and beautiful living environment.\n\nKey features include:\n- Premium materials and finishes\n- Custom furniture design\n- Sophisticated lighting design\n- Space optimization\n- Luxury amenities",
       "image": "/logo.jpg",
       "carouselImage": "/logo.jpg",
       "carouselTitle": "Luxury Apartment Interior",
       "carouselSubtitle": "Sophisticated spaces for modern living",
       "images": [
-        "/logo.jpg",
-        "/logo.jpg",
-        "/logo.jpg"
+        "/projects/project-3/photos/hero.jpg",
+        "/projects/project-3/photos/interior-1.jpg",
+        "/projects/project-3/photos/interior-2.jpg",
+        "/projects/project-3/photos/interior-3.jpg",
+        "/projects/project-3/photos/details-1.jpg"
       ],
+      "video": {
+        "mp4": "/projects/project-3/videos/video.mp4",
+        "webm": "/projects/project-3/videos/video.webm",
+        "poster": "/projects/project-3/photos/hero.jpg"
+      },
       "features": [
         "Custom Furniture",
         "Premium Materials",
         "Lighting Design",
-        "Space Optimization"
+        "Space Optimization",
+        "Luxury Finishes",
+        "Modern Amenities"
       ],
       "status": "Completed",
       "client": "Dr. Neha Gupta",

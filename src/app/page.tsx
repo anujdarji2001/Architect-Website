@@ -36,7 +36,7 @@ export default function HomePage() {
     }
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
-    }, 4000);
+    }, 6000);
     setAutoScrollInterval(interval);
   };
 
@@ -88,6 +88,22 @@ export default function HomePage() {
         @keyframes pulse {
           0%, 100% { opacity: 0.5; transform: scale(1); }
           50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(5deg); }
+          75% { transform: rotate(-5deg); }
+        }
+        
+        @keyframes scale {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.1); }
         }
         
         .fade-in {
@@ -170,6 +186,217 @@ export default function HomePage() {
             transform: 'rotate(30deg)',
             opacity: 0.4,
             animation: 'rotate 12s linear infinite reverse',
+          }} />
+          
+          {/* Additional decorative elements */}
+          <div style={{
+            position: 'absolute',
+            top: '20%',
+            left: '15%',
+            width: '40px',
+            height: '40px',
+            border: '2px solid rgba(26, 26, 26, 0.1)',
+            borderRadius: '50%',
+            opacity: 0.6,
+            animation: 'pulse 4s ease-in-out infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '70%',
+            right: '15%',
+            width: '50px',
+            height: '50px',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            transform: 'rotate(15deg)',
+            opacity: 0.5,
+            animation: 'rotate 20s linear infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '35%',
+            right: '5%',
+            width: '70px',
+            height: '70px',
+            border: '2px solid rgba(26, 26, 26, 0.07)',
+            borderRadius: '50%',
+            opacity: 0.4,
+            animation: 'float 10s ease-in-out infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '55%',
+            left: '20%',
+            width: '30px',
+            height: '30px',
+            border: '2px solid rgba(26, 26, 26, 0.09)',
+            transform: 'rotate(60deg)',
+            opacity: 0.6,
+            animation: 'rotate 18s linear infinite reverse',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '80%',
+            left: '8%',
+            width: '45px',
+            height: '45px',
+            border: '2px solid rgba(26, 26, 26, 0.06)',
+            borderRadius: '50%',
+            opacity: 0.5,
+            animation: 'pulse 6s ease-in-out infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            left: '25%',
+            width: '35px',
+            height: '35px',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            transform: 'rotate(75deg)',
+            opacity: 0.7,
+            animation: 'rotate 14s linear infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '75%',
+            right: '25%',
+            width: '25px',
+            height: '25px',
+            border: '2px solid rgba(26, 26, 26, 0.1)',
+            borderRadius: '50%',
+            opacity: 0.8,
+            animation: 'float 7s ease-in-out infinite reverse',
+          }} />
+          
+          {/* Triangle shapes */}
+          <div style={{
+            position: 'absolute',
+            top: '30%',
+            left: '30%',
+            width: '0',
+            height: '0',
+            borderLeft: '20px solid transparent',
+            borderRight: '20px solid transparent',
+            borderBottom: '35px solid rgba(26, 26, 26, 0.08)',
+            opacity: 0.6,
+            animation: 'bounce 5s ease-in-out infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '60%',
+            right: '30%',
+            width: '0',
+            height: '0',
+            borderLeft: '15px solid transparent',
+            borderRight: '15px solid transparent',
+            borderTop: '25px solid rgba(26, 26, 26, 0.09)',
+            opacity: 0.7,
+            animation: 'wiggle 8s ease-in-out infinite',
+          }} />
+          
+          {/* Hexagon shapes */}
+          <div style={{
+            position: 'absolute',
+            top: '40%',
+            left: '40%',
+            width: '30px',
+            height: '30px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.07)',
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+            opacity: 0.5,
+            animation: 'rotate 16s linear infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '85%',
+            right: '40%',
+            width: '20px',
+            height: '20px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+            opacity: 0.6,
+            animation: 'scale 6s ease-in-out infinite',
+          }} />
+          
+          {/* Diamond shapes */}
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            right: '35%',
+            width: '25px',
+            height: '25px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.06)',
+            transform: 'rotate(45deg)',
+            opacity: 0.5,
+            animation: 'pulse 7s ease-in-out infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '25%',
+            left: '35%',
+            width: '18px',
+            height: '18px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.09)',
+            transform: 'rotate(45deg)',
+            opacity: 0.7,
+            animation: 'bounce 9s ease-in-out infinite',
+          }} />
+          
+          {/* Star shapes (5-pointed) */}
+          <div style={{
+            position: 'absolute',
+            top: '65%',
+            left: '35%',
+            width: '22px',
+            height: '22px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+            opacity: 0.6,
+            animation: 'wiggle 11s ease-in-out infinite',
+          }} />
+          
+          {/* Octagon shapes */}
+          <div style={{
+            position: 'absolute',
+            top: '15%',
+            left: '45%',
+            width: '28px',
+            height: '28px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.07)',
+            clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)',
+            opacity: 0.5,
+            animation: 'rotate 22s linear infinite reverse',
+          }} />
+          
+          {/* Organic blob shapes */}
+          <div style={{
+            position: 'absolute',
+            top: '80%',
+            left: '30%',
+            width: '35px',
+            height: '35px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.06)',
+            borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+            opacity: 0.4,
+            animation: 'float 12s ease-in-out infinite',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '45%',
+            right: '20%',
+            width: '25px',
+            height: '25px',
+            background: 'transparent',
+            border: '2px solid rgba(26, 26, 26, 0.08)',
+            borderRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
+            opacity: 0.6,
+            animation: 'scale 8s ease-in-out infinite',
           }} />
           
           {/* Gradient overlay for depth */}
@@ -260,7 +487,7 @@ export default function HomePage() {
             
             <div className="relative w-full">
               <div className="overflow-hidden rounded-2xl">
-                <div className="flex transition-transform duration-500 ease-in-out" id="carousel-container">
+                <div className="flex transition-transform duration-300 ease-in-out" id="carousel-container">
                   {carouselProjects.map((project) => (
                     <div key={project.id} className="w-full flex-shrink-0">
                       <div className="relative h-[60vh] lg:h-[70vh] xl:h-[80vh]">
@@ -429,10 +656,6 @@ export default function HomePage() {
                     <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
                     Custom Furniture Design
                   </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
-                    Lighting & Color Schemes
-                  </li>
                 </ul>
               </div>
               <div>
@@ -540,7 +763,7 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="typography-h2 mb-6">
-                  Meet Our Team
+                  Meet Our Founders
                 </h2>
                 <p className="typography-body-large mb-8">
                   Our design studio combines the technical expertise of civil engineering 
