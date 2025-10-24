@@ -188,7 +188,7 @@ export default function ProjectsPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.projectsCompleted}+</div>
                 <div className="typography-body">Projects Completed</div>
@@ -200,10 +200,6 @@ export default function ProjectsPage() {
               <div className="text-center">
                 <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.yearsExperience}+</div>
                 <div className="typography-body">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="typography-h1 text-gray-900 mb-2">{companyData.company.stats.citiesServed}+</div>
-                <div className="typography-body">Cities Served</div>
               </div>
             </div>
           </div>
