@@ -2,7 +2,8 @@ import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import ProjectImages from './ProjectImages';
-import { ArrowLeft, Calendar, MapPin, Building, Users, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Building, ExternalLink } from 'lucide-react';
+import projectsData from '../../../data/projects.json';
 
 interface ProjectDetailPageProps {
   params: {
@@ -22,159 +23,8 @@ export async function generateStaticParams() {
 export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const projectId = params.id;
 
-  // Mock project data - in a real app, this would come from an API
-  const projects = {
-    '1': {
-      id: '1',
-      title: 'Modern Villa Design',
-      category: 'residential',
-      type: 'Architecture & Interior',
-      location: 'Ahmedabad, Gujarat',
-      year: '2024',
-      area: '4500 sq ft',
-      status: 'Completed',
-      description: 'A contemporary villa featuring clean lines, large glass facades, and seamless indoor-outdoor living spaces. This project showcases our expertise in modern residential design with a focus on sustainability and functionality.',
-      longDescription: `This stunning modern villa represents the perfect blend of contemporary design and functional living. The project spans 4500 square feet and features innovative architectural solutions that maximize natural light and ventilation.
-
-The design emphasizes clean lines and geometric forms, creating a striking visual presence while maintaining harmony with the surrounding landscape. Large glass facades blur the boundaries between indoor and outdoor spaces, creating a seamless connection with nature.
-
-Key features include:
-- Open-plan living areas that flow naturally from one space to another
-- Floor-to-ceiling windows that flood the interior with natural light
-- Sustainable materials and energy-efficient systems
-- Landscaped outdoor areas that extend the living space
-- Custom-designed furniture that complements the architectural vision
-
-The interior design follows the same minimalist principles, with carefully selected materials and finishes that enhance the overall aesthetic while ensuring comfort and livability.`,
-      features: [
-        'Modern Architecture',
-        'Landscape Design', 
-        'Interior Design',
-        'Smart Home Features',
-        'Sustainable Design',
-        'Custom Furniture',
-        'Energy Efficient Systems',
-        'Outdoor Living Spaces'
-      ],
-      images: [
-        '/logo.jpg',
-        '/logo.jpg', 
-        '/logo.jpg',
-        '/logo.jpg',
-        '/logo.jpg',
-        '/logo.jpg'
-      ],
-      team: [
-        {
-          name: 'Manank Patel',
-          role: 'Lead Architect',
-          qualification: 'B.E. Civil Engineering'
-        },
-        {
-          name: 'Michelle Chokshi', 
-          role: 'Interior Designer',
-          qualification: 'B.Arch (COA), M.Plan (ITPI)'
-        }
-      ]
-    },
-    '2': {
-      id: '2',
-      title: 'Corporate Office Complex',
-      category: 'commercial',
-      type: 'Architecture',
-      location: 'Gandhinagar, Gujarat',
-      year: '2024',
-      area: '12000 sq ft',
-      status: 'In Progress',
-      description: 'A state-of-the-art office complex designed for productivity and employee well-being with sustainable features.',
-      longDescription: `This corporate office complex represents the future of workplace design, combining functionality with employee well-being. The 12,000 square foot facility features open-plan layouts, natural lighting, and sustainable design elements.
-
-The building incorporates modern architectural principles with a focus on energy efficiency and environmental responsibility. Large windows and skylights maximize natural light while reducing energy consumption.
-
-Key features include:
-- Open office layouts that promote collaboration
-- Green building materials and sustainable systems
-- Comprehensive parking solutions
-- Modern amenities and break areas
-- Flexible meeting spaces and conference rooms`,
-      features: [
-        'Sustainable Design',
-        'Open Office Layout',
-        'Green Building',
-        'Parking Solutions',
-        'Energy Efficient',
-        'Modern Amenities'
-      ],
-      images: [
-        '/logo.jpg',
-        '/logo.jpg', 
-        '/logo.jpg',
-        '/logo.jpg'
-      ],
-      team: [
-        {
-          name: 'Manank Patel',
-          role: 'Lead Architect',
-          qualification: 'B.E. Civil Engineering'
-        },
-        {
-          name: 'Michelle Chokshi', 
-          role: 'Project Manager',
-          qualification: 'B.Arch (COA), M.Plan (ITPI)'
-        }
-      ]
-    },
-    '3': {
-      id: '3',
-      title: 'Luxury Apartment Interior',
-      category: 'interior',
-      type: 'Interior Design',
-      location: 'Vadodara, Gujarat',
-      year: '2023',
-      area: '2800 sq ft',
-      status: 'Completed',
-      description: 'Elegant interior design for a luxury apartment featuring premium materials and custom furniture.',
-      longDescription: `This luxury apartment interior showcases sophisticated design with premium materials and custom furniture. The 2,800 square foot space features elegant finishes and thoughtful space planning.
-
-The design emphasizes luxury and comfort while maintaining functionality for modern living. Every detail has been carefully considered to create a cohesive and beautiful living environment.
-
-Key features include:
-- Premium materials and finishes
-- Custom furniture design
-- Sophisticated lighting design
-- Space optimization
-- Luxury amenities`,
-      features: [
-        'Custom Furniture',
-        'Premium Materials',
-        'Lighting Design',
-        'Space Optimization',
-        'Luxury Finishes',
-        'Modern Amenities'
-      ],
-      images: [
-        '/logo.jpg',
-        '/logo.jpg', 
-        '/logo.jpg',
-        '/logo.jpg',
-        '/logo.jpg'
-      ],
-      team: [
-        {
-          name: 'Michelle Chokshi',
-          role: 'Lead Interior Designer',
-          qualification: 'B.Arch (COA), M.Plan (ITPI)'
-        },
-        {
-          name: 'Manank Patel', 
-          role: 'Project Coordinator',
-          qualification: 'B.E. Civil Engineering'
-        }
-      ]
-    }
-  };
-
-  const project = projects[projectId as keyof typeof projects] || projects['1'];
+  // Get project data from JSON file
+  const project = projectsData.projects.find(p => p.id.toString() === projectId) || projectsData.projects[0];
 
   if (!project) {
     return (
@@ -278,13 +128,6 @@ Key features include:
                       <div className="typography-body font-medium text-gray-900">{project.area}</div>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <Users className="h-5 w-5 text-gray-400" />
-                    <div>
-                      <div className="typography-body-small text-gray-500">Team</div>
-                      <div className="typography-body font-medium text-gray-900">{project.team.length} Members</div>
-                    </div>
-                  </div>
                 </div>
               </div>
               
@@ -331,32 +174,28 @@ Key features include:
               <div className="lg:col-span-1">
                 <div className="sticky top-8">
                   <h3 className="typography-h3 mb-6">
-                    Project Team
+                    Project Showcase
                   </h3>
                   
-                  <div className="space-y-4 mb-8">
-                    {project.team.map((member, index) => (
-                      <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="typography-h5 mb-1">{member.name}</h4>
-                        <p className="typography-body-small mb-1">{member.role}</p>
-                        <p className="typography-caption">{member.qualification}</p>
-                      </div>
-                    ))}
+                  <div className="mb-8">
+                    <div className="relative rounded-lg overflow-hidden bg-gray-100" style={{ height: '600px' }}>
+                      <video 
+                        className="w-full h-full object-cover"
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        poster={project.video?.poster || "/logo.jpg"}
+                      >
+                        <source src={project.video?.mp4 || "/logo.jpg"} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <p className="typography-body-small text-gray-600 mt-3 text-center">
+                      Watch our design process and project highlights
+                    </p>
                   </div>
                   
-                  <div className="bg-gray-900 text-white p-6 rounded-lg">
-                    <h4 className="typography-h5 mb-4">Interested in Similar Work?</h4>
-                    <p className="typography-body-small mb-4" style={{ color: '#d1d5db' }}>
-                      Let&apos;s discuss your project requirements and create something extraordinary together.
-                    </p>
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center w-full justify-center px-4 py-2 bg-white text-gray-900 rounded-md hover:bg-gray-100 transition-colors duration-200 typography-button"
-                    >
-                      Get In Touch
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Link>
-                  </div>
                 </div>
               </div>
             </div>
