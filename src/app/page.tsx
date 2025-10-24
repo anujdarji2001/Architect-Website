@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowRight, Building, Home, Hammer, Phone } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import testimonialsData from '../data/testimonials.json';
 import projectsData from '../data/projects.json';
 
@@ -30,7 +30,7 @@ export default function HomePage() {
     setCurrentSlide((prev) => (prev === 0 ? carouselProjects.length - 1 : prev - 1));
   };
 
-  const startAutoScroll = () => {
+  const startAutoScroll = useCallback(() => {
     if (autoScrollInterval) {
       clearInterval(autoScrollInterval);
     }
@@ -38,7 +38,7 @@ export default function HomePage() {
       setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
     }, 6000);
     setAutoScrollInterval(interval);
-  };
+  }, [autoScrollInterval, carouselProjects.length]);
 
   const stopAutoScroll = () => {
     if (autoScrollInterval) {
@@ -54,7 +54,7 @@ export default function HomePage() {
         clearInterval(autoScrollInterval);
       }
     };
-  }, []);
+  }, [startAutoScroll]);
 
   useEffect(() => {
     const container = document.getElementById('carousel-container');
