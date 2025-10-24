@@ -5,13 +5,13 @@ import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowRight, Building, Home, Hammer, Phone } from 'lucide-react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import testimonialsData from '../data/testimonials.json';
 import projectsData from '../data/projects.json';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [autoScrollInterval, setAutoScrollInterval] = useState<NodeJS.Timeout | null>(null);
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Get carousel projects from data
   const carouselProjects = projectsData.projects.filter(project => 
@@ -31,30 +31,28 @@ export default function HomePage() {
   };
 
   const startAutoScroll = useCallback(() => {
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
     }
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselProjects.length);
     }, 6000);
-    setAutoScrollInterval(interval);
-  }, [autoScrollInterval, carouselProjects.length]);
+    autoScrollIntervalRef.current = interval;
+  }, [carouselProjects.length]);
 
-  const stopAutoScroll = () => {
-    if (autoScrollInterval) {
-      clearInterval(autoScrollInterval);
-      setAutoScrollInterval(null);
+  const stopAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
     }
-  };
+  }, []);
 
   useEffect(() => {
     startAutoScroll();
     return () => {
-      if (autoScrollInterval) {
-        clearInterval(autoScrollInterval);
-      }
+      stopAutoScroll();
     };
-  }, [startAutoScroll]);
+  }, [startAutoScroll, stopAutoScroll]);
 
   useEffect(() => {
     const container = document.getElementById('carousel-container');
