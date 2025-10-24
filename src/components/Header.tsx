@@ -17,6 +17,28 @@ export default function Header() {
     { name: 'Contact', href: '/contact' },
   ];
 
+  const isActivePage = (href: string) => {
+    // Handle home page specifically
+    if (href === '/') {
+      return pathname === '/';
+    }
+    
+    // Handle exact matches first
+    if (pathname === href) {
+      return true;
+    }
+    
+    // Handle sub-pages (e.g., /projects/1 should highlight Projects)
+    if (pathname.startsWith(href + '/')) {
+      return true;
+    }
+    
+    return false;
+  };
+
+  // Debug: Log current pathname to help identify issues
+  console.log('Current pathname:', pathname);
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +60,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = isActivePage(item.href);
               return (
                 <Link
                   key={item.name}
@@ -74,7 +96,7 @@ export default function Header() {
           <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = isActivePage(item.href);
                 return (
                   <Link
                     key={item.name}
