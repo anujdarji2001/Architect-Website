@@ -2,13 +2,13 @@ import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import ProjectImages from './ProjectImages';
-import { ArrowLeft, Calendar, MapPin, Building, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Building } from 'lucide-react';
 import projectsData from '../../../data/projects.json';
 
 interface ProjectDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // Generate static params for the dynamic route
@@ -20,8 +20,9 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const projectId = params.id;
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+  const { id } = await params;
+  const projectId = id;
 
   // Get project data from JSON file
   const project = projectsData.projects.find(p => p.id.toString() === projectId) || projectsData.projects[0];
