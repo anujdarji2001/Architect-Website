@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import ProjectImages from './ProjectImages';
+import VideoPlayer from './VideoPlayer';
 import { ArrowLeft, Calendar, MapPin, Building } from 'lucide-react';
 import projectsData from '../../../data/projects.json';
 
@@ -146,8 +147,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         {/* Project Details */}
         <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-12">
-              <div className="lg:col-span-2">
+            <div className={`grid ${project.video ? 'lg:grid-cols-3' : 'lg:grid-cols-1'} gap-12`}>
+              <div className={project.video ? 'lg:col-span-2' : 'lg:col-span-1'}>
                 <h2 className="typography-h2 mb-8">
                   Project Overview
                 </h2>
@@ -172,33 +173,17 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 </div>
               </div>
               
-              <div className="lg:col-span-1">
-                <div className="sticky top-8">
-                  <h3 className="typography-h3 mb-6">
-                    Project Showcase
-                  </h3>
-                  
-                  <div className="mb-8">
-                    <div className="relative rounded-lg overflow-hidden bg-gray-100" style={{ height: '600px' }}>
-                      <video 
-                        className="w-full h-full object-cover"
-                        autoPlay 
-                        loop 
-                        muted 
-                        playsInline
-                        poster={project.video?.poster || "/logo.jpg"}
-                      >
-                        <source src={project.video?.mp4 || "/logo.jpg"} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                    <p className="typography-body-small text-gray-600 mt-3 text-center">
-                      Watch our design process and project highlights
-                    </p>
+              {project.video && (
+                <div className="lg:col-span-1">
+                  <div className="sticky top-8">
+                    <h3 className="typography-h3 mb-6">
+                      Project Showcase
+                    </h3>
+                    
+                    <VideoPlayer video={project.video} projectTitle={project.title} />
                   </div>
-                  
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </section>
