@@ -8,6 +8,7 @@ import { ArrowRight, Building, Home, Hammer, Phone } from 'lucide-react';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import testimonialsData from '../data/testimonials.json';
 import projectsData from '../data/projects.json';
+import teamData from '../data/team.json';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -588,7 +589,7 @@ export default function HomePage() {
               <div className="order-2 md:order-1">
                 <div className="relative h-96 rounded-2xl overflow-hidden">
                   <Image
-                    src="/logo.jpg"
+                    src="/architecture.png"
                     alt="Architecture Services"
                     fill
                     className="object-cover"
@@ -659,7 +660,7 @@ export default function HomePage() {
               <div>
                 <div className="relative h-96 rounded-2xl overflow-hidden">
                   <Image
-                    src="/logo.jpg"
+                    src="/interior.png"
                     alt="Interior Design Services"
                     fill
                     className="object-cover"
@@ -674,7 +675,7 @@ export default function HomePage() {
               <div className="order-2 md:order-1">
                 <div className="relative h-96 rounded-2xl overflow-hidden">
                   <Image
-                    src="/logo.jpg"
+                    src="/construction.png"
                     alt="Construction Services"
                     fill
                     className="object-cover"
@@ -777,14 +778,16 @@ export default function HomePage() {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
-                  <h3 className="typography-h5 mb-2">Manank Patel</h3>
-                  <p className="typography-caption">B.E. Civil</p>
-                </div>
-                <div className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
-                  <h3 className="typography-h5 mb-2">Michelle Chokshi</h3>
-                  <p className="typography-caption">B.Arch (COA), M.Plan (ITPI)</p>
-                </div>
+                {teamData.team.slice(0, 2).map((member) => (
+                  <div key={member.id} className="bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg">
+                    <div className="flex items-center mb-4">
+                      <div>
+                        <h3 className="typography-h5 mb-1">{member.name}</h3>
+                        <p className="typography-caption">{member.qualifications}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

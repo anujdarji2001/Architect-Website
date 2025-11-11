@@ -97,7 +97,7 @@ export default function AboutPage() {
                   <p>
                     From residential homes to commercial spaces, we bring the same level of 
                     dedication and expertise to every project, ensuring that each space we 
-                    create tells a unique story while standing the test of time.
+                    create tells a unique story.
                   </p>
                 </div>
               </div>
