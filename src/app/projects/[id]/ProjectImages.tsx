@@ -3,7 +3,7 @@
 import ImageGallery from 'react-image-gallery';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ProjectImagesProps {
   images: string[];
@@ -27,6 +27,23 @@ export default function ProjectImages({ images, projectTitle, showHeroImage = fa
     setCurrentIndex(index);
     setIsGalleryOpen(true);
   };
+
+  // Handle Escape key to close gallery
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isGalleryOpen) {
+        setIsGalleryOpen(false);
+      }
+    };
+
+    if (isGalleryOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isGalleryOpen]);
 
   if (showHeroImage) {
     return (
@@ -56,7 +73,6 @@ export default function ProjectImages({ images, projectTitle, showHeroImage = fa
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="bg-white/90 backdrop-blur-sm rounded-full p-3">
                 <ExternalLink className="h-6 w-6 text-gray-900" />

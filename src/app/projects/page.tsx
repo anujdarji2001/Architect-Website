@@ -17,7 +17,7 @@ export default function ProjectsPage() {
 
   const filteredProjects = selectedCategory === 'all' 
     ? projects 
-    : projects.filter(project => project.category === selectedCategory);
+    : projects.filter(project => project.categories && project.categories.includes(selectedCategory));
 
   return (
     <>
@@ -96,7 +96,7 @@ export default function ProjectsPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project) => (
-                <div key={project.id} className="fade-in bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div key={project.id} className="fade-in bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
                   <div className="relative h-64 overflow-hidden">
                     <Image
                       src={project.image}
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                   
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-grow">
                     <h3 className="typography-h4 text-gray-900 mb-2">{project.title}</h3>
                     <p className="typography-body-small mb-4 line-clamp-2">{project.description}</p>
                     
@@ -154,7 +154,7 @@ export default function ProjectsPage() {
                     
                     <Link 
                       href={`/projects/${project.id}`}
-                      className="w-full bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200 typography-button flex items-center justify-center"
+                      className="w-full bg-gray-900 text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200 typography-button flex items-center justify-center mt-auto"
                     >
                       View Details
                       <ExternalLink className="ml-2 h-4 w-4" />
