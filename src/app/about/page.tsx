@@ -159,8 +159,16 @@ export default function AboutPage() {
               {teamData.team.map((member) => (
                 <div key={member.id} className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg text-center">
                   <div className="mb-6">
-                    <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <Users className="h-10 w-10 text-gray-500" />
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-6">
+                      <div className="absolute inset-0 rounded-full overflow-hidden shadow-xl ring-4 ring-white/50">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 192px, 224px"
+                        />
+                      </div>
                     </div>
                     <h3 className="typography-h3 text-gray-900 mb-2">{member.name}</h3>
                     <p className="typography-caption mb-4">{member.qualifications}</p>

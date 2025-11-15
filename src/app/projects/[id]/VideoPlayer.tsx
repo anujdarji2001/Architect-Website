@@ -24,6 +24,23 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
     return () => setMounted(false);
   }, []);
 
+  // Handle Escape key to close video modal
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isModalOpen]);
+
   // Prevent body scroll when modal is open and hide header
   useEffect(() => {
     if (isModalOpen) {
