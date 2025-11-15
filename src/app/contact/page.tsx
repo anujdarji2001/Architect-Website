@@ -54,6 +54,7 @@ export default function ContactPage() {
           });
         }, 5000);
       } else {
+          console.log('Error sending message:', response);
         const errorData = await response.json();
         setError(errorData.error || 'Failed to send message. Please try again.');
       }
