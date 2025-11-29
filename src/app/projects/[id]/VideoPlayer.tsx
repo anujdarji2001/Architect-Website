@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Play, X } from 'lucide-react';
+import { Play, X, Loader2 } from 'lucide-react';
 
 interface VideoPlayerProps {
   video: {
@@ -16,13 +16,99 @@ interface VideoPlayerProps {
 export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
+  const [isModalVideoLoading, setIsModalVideoLoading] = useState(true);
   const scrollYRef = useRef(0);
+  const previewVideoRef = useRef<HTMLVideoElement>(null);
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
 
   // Handle mount state for portal
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
+
+  // Handle video loading state for preview video
+  useEffect(() => {
+    const videoElement = previewVideoRef.current;
+    if (!videoElement) return;
+
+    const handleCanPlay = () => {
+      setIsVideoLoading(false);
+    };
+
+    const handleLoadStart = () => {
+      setIsVideoLoading(true);
+    };
+
+    const handleWaiting = () => {
+      setIsVideoLoading(true);
+    };
+
+    const handlePlaying = () => {
+      setIsVideoLoading(false);
+    };
+
+    videoElement.addEventListener('canplay', handleCanPlay);
+    videoElement.addEventListener('loadstart', handleLoadStart);
+    videoElement.addEventListener('waiting', handleWaiting);
+    videoElement.addEventListener('playing', handlePlaying);
+
+    // Check if video is already loaded
+    if (videoElement.readyState >= 3) {
+      setIsVideoLoading(false);
+    }
+
+    return () => {
+      videoElement.removeEventListener('canplay', handleCanPlay);
+      videoElement.removeEventListener('loadstart', handleLoadStart);
+      videoElement.removeEventListener('waiting', handleWaiting);
+      videoElement.removeEventListener('playing', handlePlaying);
+    };
+  }, [video.mp4]);
+
+  // Handle video loading state for modal video
+  useEffect(() => {
+    if (!isModalOpen) return;
+    
+    const videoElement = modalVideoRef.current;
+    if (!videoElement) return;
+
+    setIsModalVideoLoading(true);
+
+    const handleCanPlay = () => {
+      setIsModalVideoLoading(false);
+    };
+
+    const handleLoadStart = () => {
+      setIsModalVideoLoading(true);
+    };
+
+    const handleWaiting = () => {
+      setIsModalVideoLoading(true);
+    };
+
+    const handlePlaying = () => {
+      setIsModalVideoLoading(false);
+    };
+
+    videoElement.addEventListener('canplay', handleCanPlay);
+    videoElement.addEventListener('loadstart', handleLoadStart);
+    videoElement.addEventListener('waiting', handleWaiting);
+    videoElement.addEventListener('playing', handlePlaying);
+
+    // Check if video is already loaded
+    if (videoElement.readyState >= 3) {
+      setIsModalVideoLoading(false);
+    }
+
+    return () => {
+      videoElement.removeEventListener('canplay', handleCanPlay);
+      videoElement.removeEventListener('loadstart', handleLoadStart);
+      videoElement.removeEventListener('waiting', handleWaiting);
+      videoElement.removeEventListener('playing', handlePlaying);
+    };
+  }, [isModalOpen, video.mp4]);
 
   // Handle Escape key to close video modal
   useEffect(() => {
@@ -142,13 +228,23 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
             className="relative inline-block rounded-lg overflow-hidden bg-gray-100 cursor-pointer group"
             onClick={() => setIsModalOpen(true)}
           >
+            {/* Loading indicator */}
+            {isVideoLoading && (
+              <div className="absolute inset-0 bg-gray-900/80 flex items-center justify-center z-10">
+                <div className="flex flex-col items-center gap-3">
+                  <Loader2 className="h-12 w-12 text-white animate-spin" />
+                  <p className="text-white text-sm font-medium">Loading video...</p>
+                </div>
+              </div>
+            )}
+            
             <video 
+              ref={previewVideoRef}
               className="block max-w-full h-auto"
               autoPlay 
               loop 
               muted 
               playsInline
-              poster={video.poster || "/logo.jpg"}
               style={{ maxWidth: '100%', display: 'block' }}
             >
               <source src={video.mp4} type="video/mp4" />
@@ -224,11 +320,21 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
             }}
           >
             <div className="w-full max-w-full relative">
+              {/* Loading indicator for modal video */}
+              {isModalVideoLoading && (
+                <div className="absolute inset-0 bg-black/90 flex items-center justify-center z-10 rounded-lg">
+                  <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="h-16 w-16 text-white animate-spin" />
+                    <p className="text-white text-lg font-medium">Loading video...</p>
+                  </div>
+                </div>
+              )}
+              
               <video 
+                ref={modalVideoRef}
                 className="w-full h-auto object-contain rounded-lg shadow-2xl bg-black"
                 controls
                 autoPlay
-                poster={video.poster || "/logo.jpg"}
                 style={{ 
                   maxHeight: '85vh',
                   width: '100%',
