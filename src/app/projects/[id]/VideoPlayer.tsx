@@ -37,6 +37,14 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
     setIsThumbnailLoading(false);
   };
 
+  const handleThumbnailPlaying = () => {
+    setIsThumbnailLoading(false);
+  };
+
+  const handleThumbnailLoadedData = () => {
+    setIsThumbnailLoading(false);
+  };
+
   const handleThumbnailWaiting = () => {
     setIsThumbnailLoading(true);
   };
@@ -47,6 +55,14 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
   };
 
   const handleModalCanPlay = () => {
+    setIsModalVideoLoading(false);
+  };
+
+  const handleModalPlaying = () => {
+    setIsModalVideoLoading(false);
+  };
+
+  const handleModalLoadedData = () => {
     setIsModalVideoLoading(false);
   };
 
@@ -198,6 +214,8 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
               style={{ maxWidth: '100%', display: 'block' }}
               onLoadStart={handleThumbnailLoadStart}
               onCanPlay={handleThumbnailCanPlay}
+              onPlaying={handleThumbnailPlaying}
+              onLoadedData={handleThumbnailLoadedData}
               onWaiting={handleThumbnailWaiting}
             >
               <source src={video.mp4} type="video/mp4" />
@@ -295,6 +313,8 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
                 onClick={(e) => e.stopPropagation()}
                 onLoadStart={handleModalLoadStart}
                 onCanPlay={handleModalCanPlay}
+                onPlaying={handleModalPlaying}
+                onLoadedData={handleModalLoadedData}
                 onWaiting={handleModalWaiting}
               >
                 <source src={video.mp4} type="video/mp4" />
