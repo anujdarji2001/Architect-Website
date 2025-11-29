@@ -28,6 +28,16 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
     return () => setMounted(false);
   }, []);
 
+  // Check video readyState to determine if already loaded
+  const checkVideoReady = (videoElement: HTMLVideoElement | null, setIsLoading: (loading: boolean) => void) => {
+    if (videoElement) {
+      // readyState: 0=HAVE_NOTHING, 1=HAVE_METADATA, 2=HAVE_CURRENT_DATA, 3=HAVE_FUTURE_DATA, 4=HAVE_ENOUGH_DATA
+      if (videoElement.readyState >= 3) {
+        setIsLoading(false);
+      }
+    }
+  };
+
   // Handle thumbnail video loading
   const handleThumbnailLoadStart = () => {
     setIsThumbnailLoading(true);
@@ -37,12 +47,20 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
     setIsThumbnailLoading(false);
   };
 
+  const handleThumbnailCanPlayThrough = () => {
+    setIsThumbnailLoading(false);
+  };
+
   const handleThumbnailPlaying = () => {
     setIsThumbnailLoading(false);
   };
 
   const handleThumbnailLoadedData = () => {
-    setIsThumbnailLoading(false);
+    checkVideoReady(thumbnailVideoRef.current, setIsThumbnailLoading);
+  };
+
+  const handleThumbnailLoadedMetadata = () => {
+    checkVideoReady(thumbnailVideoRef.current, setIsThumbnailLoading);
   };
 
   const handleThumbnailWaiting = () => {
@@ -58,22 +76,49 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
     setIsModalVideoLoading(false);
   };
 
+  const handleModalCanPlayThrough = () => {
+    setIsModalVideoLoading(false);
+  };
+
   const handleModalPlaying = () => {
     setIsModalVideoLoading(false);
   };
 
   const handleModalLoadedData = () => {
-    setIsModalVideoLoading(false);
+    checkVideoReady(modalVideoRef.current, setIsModalVideoLoading);
+  };
+
+  const handleModalLoadedMetadata = () => {
+    checkVideoReady(modalVideoRef.current, setIsModalVideoLoading);
   };
 
   const handleModalWaiting = () => {
     setIsModalVideoLoading(true);
   };
 
-  // Reset modal video loading when modal opens
+  // Check thumbnail video readyState after mount
+  useEffect(() => {
+    const checkThumbnail = () => {
+      checkVideoReady(thumbnailVideoRef.current, setIsThumbnailLoading);
+    };
+    
+    // Check immediately
+    checkThumbnail();
+    
+    // Also check after a short delay in case video loads quickly
+    const timeout = setTimeout(checkThumbnail, 100);
+    
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Reset modal video loading when modal opens and check readyState
   useEffect(() => {
     if (isModalOpen) {
       setIsModalVideoLoading(true);
+      // Check if video is already loaded after a brief moment
+      setTimeout(() => {
+        checkVideoReady(modalVideoRef.current, setIsModalVideoLoading);
+      }, 100);
     }
   }, [isModalOpen]);
 
@@ -213,9 +258,11 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
               poster={video.poster || "/logo.jpg"}
               style={{ maxWidth: '100%', display: 'block' }}
               onLoadStart={handleThumbnailLoadStart}
-              onCanPlay={handleThumbnailCanPlay}
-              onPlaying={handleThumbnailPlaying}
+              onLoadedMetadata={handleThumbnailLoadedMetadata}
               onLoadedData={handleThumbnailLoadedData}
+              onCanPlay={handleThumbnailCanPlay}
+              onCanPlayThrough={handleThumbnailCanPlayThrough}
+              onPlaying={handleThumbnailPlaying}
               onWaiting={handleThumbnailWaiting}
             >
               <source src={video.mp4} type="video/mp4" />
@@ -312,9 +359,11 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
                 }}
                 onClick={(e) => e.stopPropagation()}
                 onLoadStart={handleModalLoadStart}
-                onCanPlay={handleModalCanPlay}
-                onPlaying={handleModalPlaying}
+                onLoadedMetadata={handleModalLoadedMetadata}
                 onLoadedData={handleModalLoadedData}
+                onCanPlay={handleModalCanPlay}
+                onCanPlayThrough={handleModalCanPlayThrough}
+                onPlaying={handleModalPlaying}
                 onWaiting={handleModalWaiting}
               >
                 <source src={video.mp4} type="video/mp4" />
