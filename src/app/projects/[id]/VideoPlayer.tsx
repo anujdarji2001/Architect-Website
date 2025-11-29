@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Play, X, Loader2 } from 'lucide-react';
+import { Play, X } from 'lucide-react';
 
 interface VideoPlayerProps {
   video: {
@@ -16,111 +16,13 @@ interface VideoPlayerProps {
 export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [isThumbnailLoading, setIsThumbnailLoading] = useState(true);
-  const [isModalVideoLoading, setIsModalVideoLoading] = useState(false);
   const scrollYRef = useRef(0);
-  const thumbnailVideoRef = useRef<HTMLVideoElement>(null);
-  const modalVideoRef = useRef<HTMLVideoElement>(null);
 
   // Handle mount state for portal
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
-
-  // Check video readyState to determine if already loaded
-  const checkVideoReady = (videoElement: HTMLVideoElement | null, setIsLoading: (loading: boolean) => void) => {
-    if (videoElement) {
-      // readyState: 0=HAVE_NOTHING, 1=HAVE_METADATA, 2=HAVE_CURRENT_DATA, 3=HAVE_FUTURE_DATA, 4=HAVE_ENOUGH_DATA
-      if (videoElement.readyState >= 3) {
-        setIsLoading(false);
-      }
-    }
-  };
-
-  // Handle thumbnail video loading
-  const handleThumbnailLoadStart = () => {
-    setIsThumbnailLoading(true);
-  };
-
-  const handleThumbnailCanPlay = () => {
-    setIsThumbnailLoading(false);
-  };
-
-  const handleThumbnailCanPlayThrough = () => {
-    setIsThumbnailLoading(false);
-  };
-
-  const handleThumbnailPlaying = () => {
-    setIsThumbnailLoading(false);
-  };
-
-  const handleThumbnailLoadedData = () => {
-    checkVideoReady(thumbnailVideoRef.current, setIsThumbnailLoading);
-  };
-
-  const handleThumbnailLoadedMetadata = () => {
-    checkVideoReady(thumbnailVideoRef.current, setIsThumbnailLoading);
-  };
-
-  const handleThumbnailWaiting = () => {
-    setIsThumbnailLoading(true);
-  };
-
-  // Handle modal video loading
-  const handleModalLoadStart = () => {
-    setIsModalVideoLoading(true);
-  };
-
-  const handleModalCanPlay = () => {
-    setIsModalVideoLoading(false);
-  };
-
-  const handleModalCanPlayThrough = () => {
-    setIsModalVideoLoading(false);
-  };
-
-  const handleModalPlaying = () => {
-    setIsModalVideoLoading(false);
-  };
-
-  const handleModalLoadedData = () => {
-    checkVideoReady(modalVideoRef.current, setIsModalVideoLoading);
-  };
-
-  const handleModalLoadedMetadata = () => {
-    checkVideoReady(modalVideoRef.current, setIsModalVideoLoading);
-  };
-
-  const handleModalWaiting = () => {
-    setIsModalVideoLoading(true);
-  };
-
-  // Check thumbnail video readyState after mount
-  useEffect(() => {
-    const checkThumbnail = () => {
-      checkVideoReady(thumbnailVideoRef.current, setIsThumbnailLoading);
-    };
-    
-    // Check immediately
-    checkThumbnail();
-    
-    // Also check after a short delay in case video loads quickly
-    const timeout = setTimeout(checkThumbnail, 100);
-    
-    return () => clearTimeout(timeout);
-  }, []);
-
-  // Reset modal video loading when modal opens and check readyState
-  useEffect(() => {
-    if (isModalOpen) {
-      setIsModalVideoLoading(true);
-      // Check if video is already loaded after a brief moment
-      setTimeout(() => {
-        checkVideoReady(modalVideoRef.current, setIsModalVideoLoading);
-      }, 100);
-    }
-  }, [isModalOpen]);
 
   // Handle Escape key to close video modal
   useEffect(() => {
@@ -240,16 +142,7 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
             className="relative inline-block rounded-lg overflow-hidden bg-gray-100 cursor-pointer group"
             onClick={() => setIsModalOpen(true)}
           >
-            {isThumbnailLoading && (
-              <div className="absolute inset-0 bg-gray-100 flex items-center justify-center z-10">
-                <div className="flex flex-col items-center gap-3">
-                  <Loader2 className="h-8 w-8 text-gray-400 animate-spin" />
-                  <p className="typography-body-small text-gray-500">Loading video...</p>
-                </div>
-              </div>
-            )}
             <video 
-              ref={thumbnailVideoRef}
               className="block max-w-full h-auto"
               autoPlay 
               loop 
@@ -257,13 +150,6 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
               playsInline
               poster={video.poster || "/logo.jpg"}
               style={{ maxWidth: '100%', display: 'block' }}
-              onLoadStart={handleThumbnailLoadStart}
-              onLoadedMetadata={handleThumbnailLoadedMetadata}
-              onLoadedData={handleThumbnailLoadedData}
-              onCanPlay={handleThumbnailCanPlay}
-              onCanPlayThrough={handleThumbnailCanPlayThrough}
-              onPlaying={handleThumbnailPlaying}
-              onWaiting={handleThumbnailWaiting}
             >
               <source src={video.mp4} type="video/mp4" />
               {video.webm && <source src={video.webm} type="video/webm" />}
@@ -338,16 +224,7 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
             }}
           >
             <div className="w-full max-w-full relative">
-              {isModalVideoLoading && (
-                <div className="absolute inset-0 bg-black/90 flex items-center justify-center z-10 rounded-lg">
-                  <div className="flex flex-col items-center gap-4">
-                    <Loader2 className="h-12 w-12 text-white animate-spin" />
-                    <p className="typography-body text-white">Loading video...</p>
-                  </div>
-                </div>
-              )}
               <video 
-                ref={modalVideoRef}
                 className="w-full h-auto object-contain rounded-lg shadow-2xl bg-black"
                 controls
                 autoPlay
@@ -358,13 +235,6 @@ export default function VideoPlayer({ video, projectTitle }: VideoPlayerProps) {
                   height: 'auto'
                 }}
                 onClick={(e) => e.stopPropagation()}
-                onLoadStart={handleModalLoadStart}
-                onLoadedMetadata={handleModalLoadedMetadata}
-                onLoadedData={handleModalLoadedData}
-                onCanPlay={handleModalCanPlay}
-                onCanPlayThrough={handleModalCanPlayThrough}
-                onPlaying={handleModalPlaying}
-                onWaiting={handleModalWaiting}
               >
                 <source src={video.mp4} type="video/mp4" />
                 {video.webm && <source src={video.webm} type="video/webm" />}
