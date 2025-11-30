@@ -171,18 +171,10 @@
       "carouselTitle": "Residence at Manekbaug Society",
       "carouselSubtitle": "Modern family residence with sustainable design",
       "images": [
-        "/projects/project-1/photos/interior-1.jpg",
-        "/projects/project-1/photos/interior-2.jpg",
-        "/projects/project-1/photos/interior-3.jpg",
-        "/projects/project-1/photos/interior-4.jpg",
-        "/projects/project-1/photos/interior-5.jpg",
-        "/projects/project-1/photos/interior-6.jpg"
+        "/logo.jpg",
+        "/logo.jpg",
+        "/logo.jpg"
       ],
-      "video": {
-        "mp4": "/projects/project-1/videos/video.mp4",
-        "webm": "/projects/project-1/videos/video.webm",
-        "poster": "/projects/project-1/photos/hero.png"
-      },
       "features": [
         "Six Bedrooms",
         "Central Sunroof for Natural Light",
